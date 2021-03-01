@@ -59,13 +59,7 @@ export class TileComponent implements OnInit {
     if(newTileNumber < 0 || !Number.isInteger(newTileNumber)) throw new Error(`Tile number ${newTileNumber} is not a positive integer.`);
     this._tileNumber = newTileNumber;
     this.data.getCardBySequenceNumber(this._tileNumber)
-    .pipe(
-      catchError((error:any) =>{
-        console.log(error.message);
-        this.alertCardNotFound();
-        return of([]);
-      })
-    )
+
     .subscribe((data:Card)=>{
       if(data) this.card = data;
     });

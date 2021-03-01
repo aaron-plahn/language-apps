@@ -11,13 +11,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { CreditsComponent } from './pages/credits/credits.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon';
-import {MatListModule} from '@angular/material/list';
-
-import { DisplayVocabularyListNamePipe } from './pipes/display-vocabulary-list-name.pipe';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -26,8 +24,7 @@ import { DisplayVocabularyListNamePipe } from './pipes/display-vocabulary-list-n
     TileComponent,
     DetailComponent,
     HomeComponent,
-    CreditsComponent,
-    DisplayVocabularyListNamePipe
+    CreditsComponent
   ],
   imports: [
     BrowserModule,

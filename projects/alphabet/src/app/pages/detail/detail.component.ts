@@ -31,13 +31,11 @@ export class DetailComponent implements OnInit {
       });
   }
 
-  cyclicIncrement(n:number,maxNumber:number){
-    n++;
-    if(n < 0 || n > maxNumber + 1) throw new Error(`Index ${n} out of bounds.`); 
-    return (n++) % maxNumber + 1;
+  private cyclicIncrement(n:number,maxNumber:number){
+    return (n % maxNumber) + 1;
   }
 
-  cyclicDecrement(n:number,maxNumber:number){
+  private cyclicDecrement(n:number,maxNumber:number){
     let startingIndex: number = 1;
     n--;
     if(n === startingIndex - 1) return maxNumber;
