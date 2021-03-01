@@ -1,11 +1,13 @@
-<div id="credits" *ngIf="contributors">
-    <div class="contributor" *ngFor="let c of contributors">
-        <h2>{{ c.name }}</h2>
-        <ul>
+<div class="container">
+    <div id="credits" *ngIf="contributors">
+        <mat-card class="contributor" *ngFor="let c of contributors">
+            <mat-card id="heading">
+                <h2 matLine><b>{{ c.name }}</b></h2>
+            </mat-card>
+            
             <li *ngFor="let contribution of c.contributions">
                 {{ contribution }}
             </li>
-        </ul>
+        </mat-card>
     </div>
 </div>
-

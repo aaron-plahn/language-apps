@@ -1,0 +1,17 @@
+
+#letter {
+    height: 25%;
+    font-size: 24px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+}
+
+#picture {
+    max-height: 50%;
+}
+
+#word {
+    height: 25%;
+    font-size: 24px;
+    text-align: center;
+}

@@ -1,5 +1,5 @@
-<div *ngIf="card">
-    <div (click)="handleClick(letterRegion)">{{ card.letter.text }}</div>
-    <img (click)="handleClick(imageRegion)" [src]="card.imageURL">
-    <div (click)="handleClick(wordRegion)">{{ card.word.text }}</div>
-</div>
+<mat-card style="border-radius: 25px;padding: 5px;height: 100%;" *ngIf="card">
+        <div id="letter" style="height: 25%;" (click)="handleClick(letterRegion)">{{ card.letter.text }}</div>
+        <img id="picture" style="height: 50%;" (click)="handleClick(imageRegion)" [src]="card.imageURL" width="100%">
+        <div id="word" style="height: 25%;" (click)="handleClick(wordRegion)">{{ card.word.text }}</div>
+</mat-card>

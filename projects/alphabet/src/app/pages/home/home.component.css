@@ -1,0 +1,86 @@
+button {
+    width: 120px;
+    height: 65px;
+    margin: 2px;
+    text-align: center;
+    font-size: larger;
+}
+
+.mat-card-title, .mat-card-subtitle {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mat-card-title {
+    padding-top: 15px;
+    text-align: center;
+}
+
+#logo {
+    border-radius: 8px; 
+    box-shadow: 2px 5px 5px 2px;
+    filter: saturate(140%);
+    background:linear-gradient(217deg, rgb(255, 0, 0), rgba(255,0,0,0) 100%);
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#button {
+    padding: 0;
+}
+
+#center {
+    display: block;
+    background: linear-gradient(217deg, rgb(255, 0, 0), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(185, 185, 185, 0.842), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgb(0, 0, 255), rgba(0,0,255,0) 70.71%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    border-top-left-radius:10px;
+    border-top-right-radius:0px;
+    border-bottom-right-radius: 50% 20%;
+    border-top-left-radius: 50% 20%;
+    border-top-right-radius: -50% -20%;
+    height: auto;
+}
+
+#buttons {
+    display: block;
+    padding: 10px;
+}
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: fit-content;
+    width: 105vw;
+    background-color:white;
+    
+}
+
+li {
+    list-style-type: none;
+}
+
+#middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.mat-icon {
+    padding: 2px;
+}
