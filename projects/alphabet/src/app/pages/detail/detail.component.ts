@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { AlphabetService } from '../../services/alphabet.service';
 import { CardRegion } from '../../widgets/tile/card-region';
 import { TileClickEventData } from '../../widgets/tile/tile-click-event-data';
@@ -19,7 +20,17 @@ export class DetailComponent implements OnInit {
   constructor( private data: AlphabetService, private route:ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
-    this.data.getAlphabetSize().subscribe((data:number)=>{
+    this.data.getAlphabetSize()
+    .pipe(
+      catchError((error:any) =>{
+        console.log(error.message);
+        return of(-1);
+      })
+    )
+    .subscribe((data:number)=>{
+      if(data < 1){
+        this.handleDataLoadFailure();
+      }
       this.alphabetSize = data;
       this._active = true; // enable left \ right arrow click once Alphabet Size is known
     });
@@ -53,9 +64,7 @@ export class DetailComponent implements OnInit {
     this.tileNumber = this.cyclicIncrement(this.tileNumber,this.alphabetSize);
   }
 
-  navigateToIndex(message: string){
-    console.log(message);
-    console.log(`Returning to menu.`);
+  navigateToIndex(){
     this.router.navigate(['/menu']);
   }
 
@@ -65,6 +74,11 @@ export class DetailComponent implements OnInit {
     if(region === "LETTER") this.handleLetterClick(cardNumber);
     if(region === "WORD") this.handleWordClick(cardNumber);
     if(region === "IMAGE") this.handleImageClick(cardNumber);
+  }
+
+  handleDataLoadFailure(){
+    console.error(`Alphabet data failed to load in detail page. Failed to determine alphabet size.`)
+    this.navigateToIndex();
   }
 
   private handleLetterClick(cardNumber: number){

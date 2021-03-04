@@ -48,10 +48,19 @@ export class AlphabetService implements AlphabetAPI {
 
   getAlphabetSize(): Observable<number>{
     let endpoint: string = `${this.baseAPIURL}${this.endpoints.getFirstAlphabet}`;
-    return this.http.get(endpoint).pipe(
+    return this.http.get(endpoint)
+    .pipe(
+      catchError(error =>{
+        let errorMsg: string;
+        errorMsg = error.error instanceof ErrorEvent ? `Error: ${error.error.message}` : String(error.status);
+        return throwError(errorMsg);
+      })
+    )
+    .pipe(
       map((data:any)=>{
         let alphabetLength: number = data.alphabet_cards.length;
         console.log(`Alphabet length: ${alphabetLength}`);
+        if(alphabetLength <= 0 || !Number.isInteger(alphabetLength)) throw new Error(`Alphabet length must be a positive integer.`);
         return alphabetLength;
       })
     );
@@ -59,7 +68,15 @@ export class AlphabetService implements AlphabetAPI {
 
   getAlphabetCredits(): Observable<Object>{
     let endpoint: string = `${this.baseAPIURL}${this.endpoints.getCredits}`;
-    return this.http.get(endpoint).pipe(
+    return this.http.get(endpoint)
+    .pipe(
+      catchError(error =>{
+        let errorMsg: string;
+        errorMsg = error.error instanceof ErrorEvent ? `Error: ${error.error.message}` : String(error.status);
+        return throwError(errorMsg);
+      })
+    )
+    .pipe(
       map((data:any) => {
         return data[0].credits;
       })

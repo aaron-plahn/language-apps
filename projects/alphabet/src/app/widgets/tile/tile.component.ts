@@ -33,7 +33,7 @@ export class TileComponent implements OnInit {
   }
 
   @Output() public cardNotFound = new EventEmitter<string>();
-  alertCardNotFound(){
+  emitCardNotFound(){
     this.cardNotFound.emit(`Card not found: ${this._tileNumber}`);
   }
 
@@ -59,9 +59,16 @@ export class TileComponent implements OnInit {
     if(newTileNumber < 0 || !Number.isInteger(newTileNumber)) throw new Error(`Tile number ${newTileNumber} is not a positive integer.`);
     this._tileNumber = newTileNumber;
     this.data.getCardBySequenceNumber(this._tileNumber)
-
+    .pipe(
+      catchError((error:any) =>{
+        console.log(error.message);
+        this.handleCardNotFound();
+        return of([]);
+      })
+    )
     .subscribe((data:Card)=>{
-      if(data) this.card = data;
+      if(!data) this.handleCardNotFound();
+      this.card = data;
     });
   }
 
@@ -73,5 +80,9 @@ export class TileComponent implements OnInit {
   private getAudioURLForRegion(region: CardRegion){
     if(region === CardRegion.IMAGE || region === CardRegion.WORD) return this.card.word.audioURL;
     if(region === CardRegion.LETTER) return this.card.letter.audioURL;
+  }
+
+  private handleCardNotFound(){
+    this.emitCardNotFound();
   }
 }
