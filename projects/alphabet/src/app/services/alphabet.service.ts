@@ -11,7 +11,7 @@ export class AlphabetService implements AlphabetAPI {
   baseAPIURL: string = "https://api.tsilhqotinlanguage.ca";
   endpoints: any = {
     "getCard": "/alphabet-cards/",
-    "getCount": "/alphabet-cards/count",
+    "getFirstAlphabet": "/alphabets/1",
     "getCredits": "/apps/?name_english=Alphabet"
   };
 
@@ -47,10 +47,12 @@ export class AlphabetService implements AlphabetAPI {
   }
 
   getAlphabetSize(): Observable<number>{
-    let endpoint: string = `${this.baseAPIURL}${this.endpoints.getCount}`;
+    let endpoint: string = `${this.baseAPIURL}${this.endpoints.getFirstAlphabet}`;
     return this.http.get(endpoint).pipe(
-      map((data:Object)=>{
-        return Number(data);
+      map((data:any)=>{
+        let alphabetLength: number = data.alphabet_cards.length;
+        console.log(`Alphabet length: ${alphabetLength}`);
+        return alphabetLength;
       })
     );
   }
