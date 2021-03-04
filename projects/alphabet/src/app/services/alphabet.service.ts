@@ -82,4 +82,12 @@ export class AlphabetService implements AlphabetAPI {
       })
     )
   }
+
+  isValidID(id: string | number){
+    // An id must be a positive integer, and is at times represented as a number instead of a string
+    console.log(`Checking ${id} as valid id?`)
+    if(typeof(id) === "string") id = Number(id);
+    if(id < 0 || !Number.isInteger(id)) return false;
+    return true;
+  }
 }

@@ -13,6 +13,8 @@ import { TileClickEventData } from '../../widgets/tile/tile-click-event-data';
 })
 export class DetailComponent implements OnInit {
 
+  errorMessages: string[] = [];
+
   alphabetSize: number;
   tileNumber: number;
   private _active: boolean = false; // deactivate arrow clicks initially
@@ -38,6 +40,7 @@ export class DetailComponent implements OnInit {
     this.route.params
       .pipe(map(params=>params['id']))
       .subscribe((id:string)=>{
+        if(!this.data.isValidID(id)) this.handleDataLoadFailure();
         this.tileNumber = Number(id);
       });
   }
@@ -77,7 +80,7 @@ export class DetailComponent implements OnInit {
   }
 
   handleDataLoadFailure(){
-    console.error(`Alphabet data failed to load in detail page. Failed to determine alphabet size.`)
+    console.error(`Alphabet data or tile failed to load in detail page.`)
     this.navigateToIndex();
   }
 

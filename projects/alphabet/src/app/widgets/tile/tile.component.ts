@@ -20,7 +20,9 @@ export class TileComponent implements OnInit {
   _tileNumber: number;
   _active: boolean = true; // card must be explicitly inactivated using Input property active
   private _ready: boolean = false;
-  @Input() public set num(n: number){
+  @Input() public set num(id: string){
+    let n: number = Number(id);
+
     // tile state is controlled from outside solely by num property
     if(!this._active) return;
 
@@ -33,8 +35,9 @@ export class TileComponent implements OnInit {
   }
 
   @Output() public cardNotFound = new EventEmitter<string>();
-  emitCardNotFound(){
-    this.cardNotFound.emit(`Card not found: ${this._tileNumber}`);
+  emitCardNotFound(cardID: string){
+    console.log(`Card not found!`)
+    this.cardNotFound.emit(`Card not found: ${cardID}`);
   }
 
   @Output() public cardClicked = new EventEmitter<TileClickEventData>();
@@ -62,12 +65,12 @@ export class TileComponent implements OnInit {
     .pipe(
       catchError((error:any) =>{
         console.log(error.message);
-        this.handleCardNotFound();
+        this.handleCardNotFound(String(this._tileNumber));
         return of([]);
       })
     )
     .subscribe((data:Card)=>{
-      if(!data) this.handleCardNotFound();
+      if(!data) this.handleCardNotFound(String(this._tileNumber));
       this.card = data;
     });
   }
@@ -82,7 +85,7 @@ export class TileComponent implements OnInit {
     if(region === CardRegion.LETTER) return this.card.letter.audioURL;
   }
 
-  private handleCardNotFound(){
-    this.emitCardNotFound();
+  private handleCardNotFound(cardID: string){
+    this.emitCardNotFound(cardID);
   }
 }
