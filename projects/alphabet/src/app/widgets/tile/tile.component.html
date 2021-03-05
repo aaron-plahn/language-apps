@@ -3,5 +3,14 @@
                 <div id="letter" style="height: 25%;" (click)="handleClick(letterRegion)">{{ card.letter.text }}</div>
                 <img id="picture" style="height: 50%;" (click)="handleClick(imageRegion)" [src]="card.imageURL" width="100%">
                 <div id="word" style="height: 25%;" (click)="handleClick(wordRegion)">{{ card.word.text }}</div>
-        </mat-card>
+        </mat-card>        
+        <div *ngIf="!card.letter.text">
+                Failed to load card letter.
+        </div>
+        <div *ngIf="!card.imageURL">
+                Failed to load card picture.
+        </div>
+        <div *ngIf="!card.word.text">
+                Failed to load card word.
+        </div>
 </div>

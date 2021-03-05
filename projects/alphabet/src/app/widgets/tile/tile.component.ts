@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AlphabetService } from '../../services/alphabet.service';
-import { Card } from '../../services/IAlphabetAPI';
+import { Card } from '../../classes/card';
 import { CardRegion } from './card-region';
 import { TileClickEventData } from './tile-click-event-data';
 import { AudioService } from 'audio';
@@ -65,12 +65,14 @@ export class TileComponent implements OnInit {
     .pipe(
       catchError((error:any) =>{
         console.log(error.message);
+        console.log(`Failed to load card ${this._tileNumber}.`);
         this.handleCardNotFound(String(this._tileNumber));
         return of([]);
       })
     )
     .subscribe((data:Card)=>{
       if(!data) this.handleCardNotFound(String(this._tileNumber));
+      console.log(`Found a valid card: ${data}`);
       this.card = data;
     });
   }

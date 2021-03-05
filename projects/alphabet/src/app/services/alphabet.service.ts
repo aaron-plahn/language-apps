@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { pipe, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { AlphabetAPI, Card } from './IAlphabetApi';
+import { AlphabetAPI } from './IAlphabetApi';
+import { Card } from '../classes/card';
 
 @Injectable({
   providedIn: 'root'
@@ -29,18 +30,8 @@ export class AlphabetService implements AlphabetAPI {
     )
     .pipe(
       map((data:any)=>{
-        let card: Card = {
-          'sequenceNumber': data.sequence_number,
-          'letter': {
-            'text': data.letter,
-            'audioURL': `${this.baseAPIURL}${data.letter_audio.url}`,
-          },
-          'word': {
-            'text': data.word,
-            'audioURL': `${this.baseAPIURL}${data.word_audio.url}`
-          },
-          imageURL: `${this.baseAPIURL}${data.standalone_image.url}`
-        }
+        let card: Card = new Card(data,this.baseAPIURL);
+        console.log(card);
         return card;
       })
     );

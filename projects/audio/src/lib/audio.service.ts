@@ -17,6 +17,7 @@ export class AudioService {
    playAudioFromURL(audioURL: string){
      console.log(`Playing audio from url: ${audioURL}`);
      this.setAudioSourceURL(audioURL);
+     this.audio.load();
      this.audio.play();
    }
 }
