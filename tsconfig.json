@@ -30,6 +30,12 @@
     },
     {
       "path": "./projects/audio/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/language-hub/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/language-hub/tsconfig.spec.json"
     }
 ]
 }
