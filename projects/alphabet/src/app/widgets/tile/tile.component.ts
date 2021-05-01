@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AlphabetService } from '../../services/alphabet.service';
+import { AlphabetService } from '../../services/Alphabet/alphabet.service';
 import { Card } from '../../classes/card';
 import { CardRegion } from './card-region';
 import { TileClickEventData } from './tile-click-event-data';

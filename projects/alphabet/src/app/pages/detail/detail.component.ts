@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { AlphabetService } from '../../services/alphabet.service';
+import { AlphabetService } from '../../services/Alphabet/alphabet.service';
 import { CardRegion } from '../../widgets/tile/card-region';
 import { TileClickEventData } from '../../widgets/tile/tile-click-event-data';
 

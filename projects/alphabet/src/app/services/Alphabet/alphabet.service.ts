@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { pipe, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { AlphabetAPI } from './IAlphabetAPI';
-import { Card } from '../classes/card';
+import { AlphabetAPI } from '../IAlphabetAPI';
+import { Card } from '../../classes/card';
 
 @Injectable({
   providedIn: 'root'

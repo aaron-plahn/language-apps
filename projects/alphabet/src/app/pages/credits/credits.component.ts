@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlphabetService } from '../../services/alphabet.service';
+import { AlphabetService } from '../../services/Alphabet/alphabet.service';
 
 @Component({
   selector: 'app-credits',

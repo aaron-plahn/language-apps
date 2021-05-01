@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { AlphabetService } from '../../services/alphabet.service';
+import { AlphabetService } from '../../services/Alphabet/alphabet.service';
 import { TileClickEventData } from '../../widgets/tile/tile-click-event-data';
 
 type MenuDimensions = {
