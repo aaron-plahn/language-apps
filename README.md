@@ -17,6 +17,19 @@ Run `ng serve --project <project-name>` for a dev server. Navigate to `http://lo
 Run `ng generate component component-name --project <project-name>` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Building and Linking
+To use a library locally in development, you must first build and link the library. For example, here's how you build and link the audio library.
+```
+ng build --project audio
+cd <project-base-dir>/dist/audio
+npm link
+cd <project-base-dir>
+npm link audio
+
+```
+Then within a given project, you should be able to 
+`import { AudioService } from 'audio';`
+
+For a different local library, just substitute `<library-name>` for audio in the above directions.
 
 ## Running unit tests
 
