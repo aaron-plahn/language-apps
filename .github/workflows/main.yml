@@ -27,20 +27,10 @@ jobs:
         run: |
           npm i
           npm run build:prod
-      - name: Push Build to Releases
-        uses: ncipollo/release-action@v1
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
-          artifacts: "dist/language-hub/*"
-          token: ${{ secrets.LANGUAGE_APPS_TOKEN }}
-      - name: Upload Artifacts
-        if: success()
-        uses: actions/upload-artifact@v2
-        with:
-          name: deploy_dist
-          path: dist/language-hub/*
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: ~/work/language-apps/dist/language-hub
+         
