@@ -38,7 +38,7 @@ jobs:
         with:
           name: deploy_dist
           path: dist/language-hub/*
-        name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
