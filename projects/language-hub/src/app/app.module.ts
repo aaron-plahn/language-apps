@@ -8,6 +8,7 @@ import { AppDescriptionsComponent } from './pages/app-descriptions/app-descripti
 import { RadioComponent } from './pages/radio/radio.component';
 import { SongIndexComponent } from './pages/song-index/song-index.component';
 import { SongDetailComponent } from './pages/song-detail/song-detail.component';
+import { MediaItemNamePipe } from './pipes/media-item-name.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { SongDetailComponent } from './pages/song-detail/song-detail.component';
     AppDescriptionsComponent,
     RadioComponent,
     SongIndexComponent,
-    SongDetailComponent
+    SongDetailComponent,
+    MediaItemNamePipe
   ],
   imports: [
     BrowserModule,

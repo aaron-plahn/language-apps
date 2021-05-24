@@ -11,8 +11,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let song of mediaList.items">
-            <td [routerLink]="['/songs',song.id]">{{ song.name }}</td>          
-            <!-- <td [routerLink]="['/songs',song.id]">{{ song | mediaItemName | titlecase }}</td>           -->
+            <td [routerLink]="['/songs',song.id]">{{ song | mediaItemName | titlecase }}</td>          
           </tr>
         </tbody>
       </table>
