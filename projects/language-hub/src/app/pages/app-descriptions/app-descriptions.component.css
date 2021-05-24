@@ -1,0 +1,26 @@
+.mat-card {
+
+    text-align: center;
+}
+
+
+#center {
+    margin: auto;
+    width: 40%;
+}
+
+@media only screen and (max-width: 800px) {
+    #center {
+    width: 100%;
+    }
+  }
+
+  a {
+      margin: 0;
+      padding: 0;
+  }
+
+  .mat-card-actions {
+    margin: 0;
+    padding: 0;
+  }

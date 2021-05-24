@@ -1,0 +1,31 @@
+<div class="container" id="page">
+    <div id="content">
+      <div id="inner">
+  <!-- Header -->
+        <div id="heading">
+          <div id="container">
+            <h1 style="text-align: center;"><b>Apps</b></h1>
+          </div>
+        </div>
+  <!-- End of Header -->
+        <div id="center"> 
+          <div *ngFor="let app of apps">
+            <!--TODO uncomment after adding material-->
+           <!-- <mat-card>
+              <img mat-card-lg-image [src]="app.image">
+              <mat-card-title>{{ app.title }}</mat-card-title>
+              <mat-card-content>
+                {{ app.description }}
+              </mat-card-content>
+              <mat-card-actions>
+                <a *ngIf="app.links.google" [href]="app.links.google" target="_blank"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="200px"/></a>
+                <a *ngIf="app.links.iOS" [href]="app.links.iOS" target="_blank"><img alt='Download on the App Store' width="200px"></a>
+                <a *ngIf="app.links.web" [href]="app.links.web" target="_blank"><img alt='Play web version' src='https://www.tsilhqotin.ca/wp-content/uploads/2021/01/web_verson_icon.png' width="180px" style="border-radius: 15px; margin-left: auto; margin-right: auto; display: block;"  /></a>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+    
+          <mat-divider></mat-divider>
+        -->
+    </div>
+  </div>

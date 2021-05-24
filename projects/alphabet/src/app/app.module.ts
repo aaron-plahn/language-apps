@@ -16,6 +16,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { AppDescriptionsComponent } from './pages/app-descriptions/app-descriptions.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatListModule } from '@angular/material/list';
     TileComponent,
     DetailComponent,
     HomeComponent,
-    CreditsComponent
+    CreditsComponent,
+    AppDescriptionsComponent
   ],
   imports: [
     BrowserModule,
