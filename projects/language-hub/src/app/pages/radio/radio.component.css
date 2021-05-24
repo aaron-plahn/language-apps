@@ -1,0 +1,23 @@
+.logo {
+    text-align: center;
+  }
+  
+  #btn {
+    border-radius: 15px;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  .content {
+      display: inline-block;
+  }
+  
+  ul.p {
+    list-style-type: circle;
+  }
+  
+  .content {
+    align-self: center;
+  }

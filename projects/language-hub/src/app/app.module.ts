@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppDescriptionsComponent } from './pages/app-descriptions/app-descriptions.component';
+import { RadioComponent } from './pages/radio/radio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppDescriptionsComponent
+    AppDescriptionsComponent,
+    RadioComponent
   ],
   imports: [
     BrowserModule,
