@@ -1,0 +1,20 @@
+<div *ngIf="mediaList">
+    <div id="heading">
+      <h1 style="text-align: center;"><b>Songs</b></h1>
+    </div>
+    <div *ngIf="mediaList.items">
+      <table class="table text-white">
+        <thead>
+          <tr>
+            <th scope="col">Title</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let song of mediaList.items">
+            <td [routerLink]="['/songs',song.id]">{{ song.name }}</td>          
+            <!-- <td [routerLink]="['/songs',song.id]">{{ song | mediaItemName | titlecase }}</td>           -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
