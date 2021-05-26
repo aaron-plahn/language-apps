@@ -3,6 +3,7 @@ import { AppDescriptionsComponent } from './pages/app-descriptions/app-descripti
 import { RadioComponent } from './pages/radio/radio.component';
 import { SongDetailComponent } from './pages/song-detail/song-detail.component';
 import { SongIndexComponent } from './pages/song-index/song-index.component';
+import { VideoDetailComponent } from './pages/video-detail/video-detail.component';
 import { VideoIndexComponent } from './pages/video-index/video-index.component';
 
 // TODO comment components back in as migrated
@@ -12,6 +13,7 @@ export const routes: Routes = [
     // {"path": "dialect", "component": DialectComponent},
     {"path": "songs/:id", "component": SongDetailComponent},
     {"path": "songs", "component": SongIndexComponent},
+    {"path": "videos/:id", "component": VideoDetailComponent},
     {"path": "videos", "component": VideoIndexComponent},
     {"path": "apps", "component": AppDescriptionsComponent},
     // {"path": "links", "component": LinksComponent},
