@@ -6,7 +6,7 @@ import MediaItem from '../../classes/MediaItem';
 import { MediaCollectionsService } from '../../services/media-collections.service';
 
 @Component({
-  selector: 'app-video-detail',
+  selector: 'language-hub-video-detail',
   templateUrl: './video-detail.component.html',
   styleUrls: ['./video-detail.component.css']
 })

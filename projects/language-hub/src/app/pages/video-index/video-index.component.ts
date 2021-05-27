@@ -3,7 +3,7 @@ import { MediaCollectionsService } from '../../services/media-collections.servic
 import MediaList from '../../classes/MediaList';
 
 @Component({
-  selector: 'app-videos',
+  selector: 'language-hub-videos',
   templateUrl: './video-index.component.html',
   styleUrls: ['./video-index.component.css']
 })

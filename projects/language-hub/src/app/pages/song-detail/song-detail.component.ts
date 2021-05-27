@@ -6,7 +6,7 @@ import MediaItem from '../../classes/MediaItem';
 import { MediaCollectionsService } from '../../services/media-collections.service';
 
 @Component({
-  selector: 'app-song-detail',
+  selector: 'language-hub-song-detail',
   templateUrl: './song-detail.component.html',
   styleUrls: ['./song-detail.component.css']
 })

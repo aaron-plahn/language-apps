@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-radio',
+  selector: 'language-hub-radio',
   templateUrl: './radio.component.html',
   styleUrls: ['./radio.component.css']
 })

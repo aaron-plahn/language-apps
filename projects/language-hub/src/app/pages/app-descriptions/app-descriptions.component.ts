@@ -2,7 +2,7 @@ import { App } from '../../types/App';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-app-descriptions',
+  selector: 'language-hub-app-descriptions',
   templateUrl: './app-descriptions.component.html',
   styleUrls: ['./app-descriptions.component.css']
 })
