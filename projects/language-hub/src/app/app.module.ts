@@ -11,6 +11,7 @@ import { SongDetailComponent } from './pages/song-detail/song-detail.component';
 import { MediaItemNamePipe } from './pipes/media-item-name.pipe';
 import { VideoIndexComponent } from './pages/video-index/video-index.component';
 import { VideoDetailComponent } from './pages/video-detail/video-detail.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { VideoDetailComponent } from './pages/video-detail/video-detail.componen
     SongDetailComponent,
     MediaItemNamePipe,
     VideoIndexComponent,
-    VideoDetailComponent
+    VideoDetailComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

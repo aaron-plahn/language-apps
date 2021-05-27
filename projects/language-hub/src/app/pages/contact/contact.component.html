@@ -1,0 +1,33 @@
+<div class="container" id="page">
+    <div id="content">
+      <div id="inner">
+  
+        <div mat-divider id="heading" color="accent">
+          <div id="container">
+            <h1 style="text-align: center;"><b>Contact</b></h1>
+          </div>
+        </div>
+  
+        <h2>Language Technology Team</h2>
+          <section class="container" id="section">
+            <div class="one">
+              <div *ngFor="let employee of employees">
+                <p>{{employee.name}}</p>
+                <p>{{employee.title}}</p>
+              </div>
+            </div>
+            <div class="two">
+              <ul class="a">
+                <h3>Address <span class="glyphicon">&#x2709;</span></h3>
+                <li>79A 3rd Ave N</li>
+                <li>Williams Lake, BC V2G 4T4</li>
+              <br>
+                <h3>Phone </h3><p> 778-412-1112</p>
+              </ul>
+            </div>
+          </section>
+            
+      </div>
+    </div>
+  </div>
+    

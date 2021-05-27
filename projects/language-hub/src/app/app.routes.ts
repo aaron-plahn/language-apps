@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppDescriptionsComponent } from './pages/app-descriptions/app-descriptions.component';
+import { ContactComponent } from './pages/contact/contact.component';
 import { RadioComponent } from './pages/radio/radio.component';
 import { SongDetailComponent } from './pages/song-detail/song-detail.component';
 import { SongIndexComponent } from './pages/song-index/song-index.component';
@@ -19,5 +20,5 @@ export const routes: Routes = [
     // {"path": "links", "component": LinksComponent},
     // {"path": "teachers", "component": TeachersComponent},
     // {"path": "funders", "component": FundersComponent},
-    // {"path": "contact", "component": ContactComponent}
+    {"path": "contact", "component": ContactComponent}
   ];
