@@ -14,6 +14,7 @@ import { VideoDetailComponent } from './pages/video-detail/video-detail.componen
 import { ContactComponent } from './pages/contact/contact.component';
 import { DialectComponent } from './pages/dialect/dialect.component';
 import { FundersComponent } from './pages/funders/funders.component';
+import { LinksComponent } from './pages/links/links.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FundersComponent } from './pages/funders/funders.component';
     VideoDetailComponent,
     ContactComponent,
     DialectComponent,
-    FundersComponent
+    FundersComponent,
+    LinksComponent
   ],
   imports: [
     BrowserModule,

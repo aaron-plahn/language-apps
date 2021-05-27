@@ -3,6 +3,7 @@ import { AppDescriptionsComponent } from './pages/app-descriptions/app-descripti
 import { ContactComponent } from './pages/contact/contact.component';
 import { DialectComponent } from './pages/dialect/dialect.component';
 import { FundersComponent } from './pages/funders/funders.component';
+import { LinksComponent } from './pages/links/links.component';
 import { RadioComponent } from './pages/radio/radio.component';
 import { SongDetailComponent } from './pages/song-detail/song-detail.component';
 import { SongIndexComponent } from './pages/song-index/song-index.component';
@@ -19,7 +20,7 @@ export const routes: Routes = [
     {"path": "videos/:id", "component": VideoDetailComponent},
     {"path": "videos", "component": VideoIndexComponent},
     {"path": "apps", "component": AppDescriptionsComponent},
-    // {"path": "links", "component": LinksComponent},
+    {"path": "links", "component": LinksComponent},
     // {"path": "teachers", "component": TeachersComponent},
     {"path": "funders", "component": FundersComponent},
     {"path": "contact", "component": ContactComponent}

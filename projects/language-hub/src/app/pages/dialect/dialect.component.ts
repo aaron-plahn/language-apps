@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-dialect',
+  selector: 'language-hub-dialect',
   templateUrl: './dialect.component.html',
   styleUrls: ['./dialect.component.css']
 })
