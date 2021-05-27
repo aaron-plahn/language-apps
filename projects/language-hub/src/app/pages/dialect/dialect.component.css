@@ -1,0 +1,11 @@
+.content {
+    display: inline-block;
+}
+
+ul.p {
+  list-style-type: circle;
+}
+
+h1 {
+  text-align: center;
+}

@@ -12,6 +12,7 @@ import { MediaItemNamePipe } from './pipes/media-item-name.pipe';
 import { VideoIndexComponent } from './pages/video-index/video-index.component';
 import { VideoDetailComponent } from './pages/video-detail/video-detail.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { DialectComponent } from './pages/dialect/dialect.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ContactComponent } from './pages/contact/contact.component';
     MediaItemNamePipe,
     VideoIndexComponent,
     VideoDetailComponent,
-    ContactComponent
+    ContactComponent,
+    DialectComponent
   ],
   imports: [
     BrowserModule,
