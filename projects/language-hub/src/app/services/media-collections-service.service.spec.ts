@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MediaCollectionsService } from './media-collections-service.service';
+import { MediaCollectionsService } from './media-collections.service';
 
 describe('MediaCollectionsServiceService', () => {
   let service: MediaCollectionsService;

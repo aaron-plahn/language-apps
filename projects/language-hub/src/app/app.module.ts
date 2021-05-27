@@ -13,6 +13,7 @@ import { VideoIndexComponent } from './pages/video-index/video-index.component';
 import { VideoDetailComponent } from './pages/video-detail/video-detail.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DialectComponent } from './pages/dialect/dialect.component';
+import { FundersComponent } from './pages/funders/funders.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DialectComponent } from './pages/dialect/dialect.component';
     VideoIndexComponent,
     VideoDetailComponent,
     ContactComponent,
-    DialectComponent
+    DialectComponent,
+    FundersComponent
   ],
   imports: [
     BrowserModule,
