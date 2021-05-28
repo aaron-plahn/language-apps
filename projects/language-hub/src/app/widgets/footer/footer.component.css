@@ -1,0 +1,54 @@
+.mat-toolbar {
+  display: block;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
+  font-weight: 80;
+  font-size: 20px;
+  height: 55px;
+  text-align: center;
+  box-shadow: 0 -5px 5px -5px #333;
+  z-index: 10;
+  padding-top: 8px;
+}
+
+p {
+  margin-top: 10px;
+}
+
+.fa {
+  font-size: 20px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 32px;
+}
+
+.fa:hover {
+  opacity: 0.5;
+}
+
+.fa-facebook {
+  background-color: inherit;
+}
+
+.fa-twitter {
+  background-color: inherit;
+}
+
+.fa-youtube {
+  background-color: inherit;
+}
+
+.fa-github {
+  background-color: color;
+}
+
+@media screen and (max-width: 1200px) {
+  #copyright {
+    display: none;
+  }
+}

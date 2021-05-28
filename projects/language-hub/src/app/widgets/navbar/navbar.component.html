@@ -1,0 +1,44 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
+    <mat-toolbar style="box-shadow: none">
+      <a class="navbar-brand" href="#"
+        ><img
+          src="https://api.tsilhqotinlanguage.ca/uploads/tng_log_for_language_hub_2e4ec30f17.png"
+          style="height: 50px"
+      /></a>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/radio']">104.5 FM </a>
+      <a mat-list-item [routerLink]="['/dialect']">Dialect</a>
+      <a mat-list-item [routerLink]="['/apps']">Apps</a>
+      <a mat-list-item [routerLink]="['/songs']">Songs</a>
+      <a mat-list-item [routerLink]="['/videos']">Videos</a>
+      <a mat-list-item [routerLink]="['/links']">Links</a>
+      <a mat-list-item [routerLink]="['/teachers']">Teachers</a>
+      <a mat-list-item [routerLink]="['/funders']">Funders</a>
+      <a mat-list-item [routerLink]="['/contact']">Contact</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span> Tŝilhqot’in Language </span>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
