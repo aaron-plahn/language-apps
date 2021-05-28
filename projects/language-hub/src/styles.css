@@ -1,3 +1,119 @@
-h1{
-    color:blue;
+/* You can add global styles to this file, and also import other style files
+"deeppurple-amber.css"
+"indigo-pink.css"
+"pink-bluegrey.css"
+"purple-green.css"
+*/
+
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+#front {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: white;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(37, 37, 37, 0.425);
+}
+
+body { 
+    margin: 0; 
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+}
+
+body {
+    background: url(https://www.tsilhqotin.ca/wp-content/uploads/2020/12/tsilhqotin_fire-scaled.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#heading {
+
+    background-position: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#container {
+    width: 100%;
+    background: url(https://www.tsilhqotin.ca/wp-content/uploads/2020/12/tsilhqotin_fire-scaled.jpg) no-repeat center center;
+    background-position: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.384), 0 6px 20px 0 rgba(0, 0, 0, 0.384);
+}
+
+h2 {
+    padding: none;
+}
+
+#content {
+
+    top: 100px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+
+    padding-left: 150px;
+    padding-right: 150px;
+
+    margin-bottom: 65px;
+    padding-bottom: 0px;
+
+}
+
+#inner {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 0px;
+    margin-right: 0px;
+    min-height: 100%;
+    padding-bottom: 100px;
+    overflow: auto;
+}
+
+h1 {
+    padding-bottom: 35px;
+    padding-top: 50px;
+
+}
+
+#heading {
+    color: white;
+    filter: grayscale(90%)
+
+}
+
+
+
+ul.p {
+  list-style-type: circle;
+}
+
+@media (max-width: 1200px) {
+  #content {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 1200px) {
+  #content {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0;
+  }
 }

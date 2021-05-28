@@ -16,6 +16,7 @@ import { DialectComponent } from './pages/dialect/dialect.component';
 import { FundersComponent } from './pages/funders/funders.component';
 import { LinksComponent } from './pages/links/links.component';
 import { TeachersComponent } from './pages/teachers/teachers.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { TeachersComponent } from './pages/teachers/teachers.component';
     DialectComponent,
     FundersComponent,
     LinksComponent,
-    TeachersComponent
+    TeachersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

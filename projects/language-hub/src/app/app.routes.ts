@@ -3,6 +3,7 @@ import { AppDescriptionsComponent } from './pages/app-descriptions/app-descripti
 import { ContactComponent } from './pages/contact/contact.component';
 import { DialectComponent } from './pages/dialect/dialect.component';
 import { FundersComponent } from './pages/funders/funders.component';
+import { HomeComponent } from './pages/home/home.component';
 import { LinksComponent } from './pages/links/links.component';
 import { RadioComponent } from './pages/radio/radio.component';
 import { SongDetailComponent } from './pages/song-detail/song-detail.component';
@@ -13,7 +14,7 @@ import { VideoIndexComponent } from './pages/video-index/video-index.component';
 
 // TODO comment components back in as migrated
 export const routes: Routes = [
-    // {"path": "", "component": HomeComponent},
+    {"path": "", "component": HomeComponent},
     {"path": "radio", "component": RadioComponent},
     {"path": "dialect", "component": DialectComponent},
     {"path": "songs/:id", "component": SongDetailComponent},
