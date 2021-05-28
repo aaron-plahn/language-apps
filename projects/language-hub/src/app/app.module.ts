@@ -15,6 +15,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { DialectComponent } from './pages/dialect/dialect.component';
 import { FundersComponent } from './pages/funders/funders.component';
 import { LinksComponent } from './pages/links/links.component';
+import { TeachersComponent } from './pages/teachers/teachers.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { LinksComponent } from './pages/links/links.component';
     ContactComponent,
     DialectComponent,
     FundersComponent,
-    LinksComponent
+    LinksComponent,
+    TeachersComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { LinksComponent } from './pages/links/links.component';
 import { RadioComponent } from './pages/radio/radio.component';
 import { SongDetailComponent } from './pages/song-detail/song-detail.component';
 import { SongIndexComponent } from './pages/song-index/song-index.component';
+import { TeachersComponent } from './pages/teachers/teachers.component';
 import { VideoDetailComponent } from './pages/video-detail/video-detail.component';
 import { VideoIndexComponent } from './pages/video-index/video-index.component';
 
@@ -21,7 +22,7 @@ export const routes: Routes = [
     {"path": "videos", "component": VideoIndexComponent},
     {"path": "apps", "component": AppDescriptionsComponent},
     {"path": "links", "component": LinksComponent},
-    // {"path": "teachers", "component": TeachersComponent},
+    {"path": "teachers", "component": TeachersComponent},
     {"path": "funders", "component": FundersComponent},
     {"path": "contact", "component": ContactComponent}
   ];
