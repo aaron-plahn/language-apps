@@ -1,3 +1,4 @@
+import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,6 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppDescriptionsComponent } from './pages/app-descriptions/app-descriptions.component';
@@ -25,41 +27,43 @@ import { TeachersComponent } from './pages/teachers/teachers.component';
 import { VideoDetailComponent } from './pages/video-detail/video-detail.component';
 import { VideoIndexComponent } from './pages/video-index/video-index.component';
 import { MediaItemNamePipe } from './pipes/media-item-name.pipe';
-import { NavbarComponent } from './widgets/navbar/navbar.component';
 import { FooterComponent } from './widgets/footer/footer.component';
+import { NavbarComponent } from './widgets/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppDescriptionsComponent,
-    RadioComponent,
-    SongIndexComponent,
-    SongDetailComponent,
-    MediaItemNamePipe,
-    VideoIndexComponent,
-    VideoDetailComponent,
     ContactComponent,
     DialectComponent,
-    FundersComponent,
-    LinksComponent,
-    TeachersComponent,
-    HomeComponent,
-    NavbarComponent,
     FooterComponent,
+    FundersComponent,
+    HomeComponent,
+    LinksComponent,
+    MediaItemNamePipe,
+    NavbarComponent,
+    RadioComponent,
+    SongDetailComponent,
+    SongIndexComponent,
+    TeachersComponent,
+    VideoDetailComponent,
+    VideoIndexComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    BrowserModule,
     HttpClientModule,
-    MatListModule,
-    MatToolbarModule,
-    MatSidenavModule,
+    LayoutModule,
+    MatButtonModule,
     MatCardModule,
     MatDividerModule,
-    MatButtonModule,
-    MatMenuModule,
-    MatIconModule,
     MatGridListModule,
+    MatIconModule,
+    MatListModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
