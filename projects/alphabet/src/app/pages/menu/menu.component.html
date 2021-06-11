@@ -1,18 +1,26 @@
-<div *ngIf='errorMessages.length === 0'>
-    <div class="container">
-        <div id ="menu" *ngIf="menuItemNumbers">
-            <mat-grid-list cols="3" rowHeight="3:3" gutterSize="0px" *ngFor="let row of menuItemNumbers">
-                <mat-grid-tile id="menu-row" *ngFor="let tileNumber of row">
-                    <alphabet-tile [num]="tileNumber" [active]="false" (cardClicked)="handleCardClick($event)"></alphabet-tile>     
-                </mat-grid-tile>
-            </mat-grid-list>
-        </div>
+<div *ngIf="errorMessages.length === 0">
+  <div class="container">
+    <div id="menu" *ngIf="menuItemNumbers">
+      <mat-grid-list
+        cols="3"
+        rowHeight="3:3"
+        gutterSize="0px"
+        *ngFor="let row of menuItemNumbers"
+      >
+        <mat-grid-tile id="menu-row" *ngFor="let tileNumber of row">
+          <alphabet-tile
+            [num]="tileNumber"
+            [active]="false"
+            (cardClicked)="handleCardClick($event)"
+          ></alphabet-tile>
+        </mat-grid-tile>
+      </mat-grid-list>
     </div>
+  </div>
 </div>
-<div *ngIf='errorMessages.length > 0'>
-    <h1>Failed to Load</h1>
-    <p *ngFor='let error of errorMessages'>
-        {{ error }}
-    </p>
-</div>
+<div *ngIf="errorMessages.length > 0">
+  <h1>Failed to Load</h1>
+  <p *ngFor="let error of errorMessages">
+    {{ error }}
+  </p>
 </div>
