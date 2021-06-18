@@ -1,19 +1,29 @@
-<div *ngIf="mediaList">
-    <div id="heading">
-      <h1 style="text-align: center;"><b>Songs</b></h1>
-    </div>
-    <div *ngIf="mediaList.items">
-      <table class="table text-white">
-        <thead>
-          <tr>
-            <th scope="col">Title</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let song of mediaList.items">
-            <td [routerLink]="['/songs',song.id]">{{ song | mediaItemName | titlecase }}</td>          
-          </tr>
-        </tbody>
-      </table>
+<div id="linkspage" style="align-items: center; height: 100vh">
+  <div id="content">
+    <div id="inner">
+      <div id="heading">
+        <div id="container">
+          <h1 style="text-align: center"><b>Songs</b></h1>
+        </div>
+      </div>
+      <div *ngIf="mediaList">
+        <div *ngIf="mediaList.items">
+          <table class="table text-white">
+            <thead>
+              <tr>
+                <th scope="col">Title</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let song of mediaList.items">
+                <td [routerLink]="['/songs', song.id]">
+                  {{ song | mediaItemName | titlecase }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
+</div>

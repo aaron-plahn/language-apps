@@ -5,7 +5,7 @@
 "purple-green.css"
 */
 
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '~@angular/material/prebuilt-themes/purple-green.css';
 
 #front {
   position: absolute;
@@ -88,7 +88,6 @@ h2 {
 h1 {
     padding-bottom: 35px;
     padding-top: 50px;
-
 }
 
 #heading {

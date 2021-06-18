@@ -64,6 +64,7 @@ import { NavbarComponent } from './widgets/navbar/navbar.component';
     MatMenuModule,
     MatSidenavModule,
     MatToolbarModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
