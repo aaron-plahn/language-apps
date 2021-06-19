@@ -1,17 +1,35 @@
-<div *ngIf="video">
-    <h1> {{ video | mediaItemName }} </h1>
-</div>
-<div *ngIf="video?.mediaURL && video?.mediaType">
+<div id="linkspage" style="align-items: center; height: 100vh">
+  <div id="content">
+    <div id="inner">
+      <div id="heading">
+        <div id="container">
+          <h1 style="text-align: center">
+            <b
+              ><div *ngIf="video">
+                {{ video | mediaItemName }}
+              </div></b
+            >
+          </h1>
+        </div>
+      </div>
+      <div *ngIf="video?.mediaURL && video?.mediaType">
         <video width="320" height="240" controls>
-            <source [src]="video.mediaURL" [type]="video.mediaType" controls=true>
+          <source
+            [src]="video.mediaURL"
+            [type]="video.mediaType"
+            controls="true"
+          />
           Your browser does not support the video format.
-          </video> 
-</div>
-<div *ngIf="video?.comments">
-    <h2>About</h2>
-    {{ video.comments }}
-</div>
-<div *ngIf="video?.lyrics">
-    <h2>Lyrics</h2>
-    {{ video.lyrics }}
+        </video>
+      </div>
+      <div *ngIf="video?.comments">
+        <h2>About</h2>
+        {{ video.comments }}
+      </div>
+      <div *ngIf="video?.lyrics">
+        <h2>Lyrics</h2>
+        {{ video.lyrics }}
+      </div>
+    </div>
+  </div>
 </div>

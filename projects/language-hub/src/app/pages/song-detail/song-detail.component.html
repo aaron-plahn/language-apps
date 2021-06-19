@@ -1,14 +1,32 @@
-<div *ngIf="song">
-    <h1> {{ song | mediaItemName }} </h1>
-</div>
-<div *ngIf="song?.mediaURL">
-    <audio [src]="song.mediaURL" type="song.mediaType" controls=true></audio>
-</div>
-<div *ngIf="song?.comments">
-    <h2>About</h2>
-    {{ song.comments }}
-</div>
-<div *ngIf="song?.lyrics">
-    <h2>Lyrics</h2>
-    {{ song.lyrics }}
+<div id="linkspage" style="align-items: center; height: 100vh">
+  <div id="content">
+    <div id="inner">
+      <div id="heading">
+        <div id="container">
+          <h1 style="text-align: center">
+            <b
+              ><div *ngIf="song">
+                {{ song | mediaItemName }}
+              </div></b
+            >
+          </h1>
+        </div>
+      </div>
+      <div *ngIf="song?.mediaURL">
+        <audio
+          [src]="song.mediaURL"
+          type="song.mediaType"
+          controls="true"
+        ></audio>
+      </div>
+      <div *ngIf="song?.comments">
+        <h2>About</h2>
+        {{ song.comments }}
+      </div>
+      <div *ngIf="song?.lyrics">
+        <h2>Lyrics</h2>
+        {{ song.lyrics }}
+      </div>
+    </div>
+  </div>
 </div>
