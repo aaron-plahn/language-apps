@@ -1,9 +1,12 @@
 button {
-    width: 120px;
-    height: 65px;
+    width: 115px;
+    height: 50px;
     margin: 2px;
     text-align: center;
     font-size: larger;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #ff028996, #8400ff7a);
+    color: white;
 }
 
 .mat-card-title, .mat-card-subtitle {
@@ -19,7 +22,6 @@ button {
 #logo {
     border-radius: 8px; 
     box-shadow: 2px 5px 5px 2px;
-    filter: drop-shadow(20px 10px 4px #8400ff7a);
     background: linear-gradient(90deg, #ff028996, #8400ff7a);
     border-color: white;
     border-style: solid;
@@ -37,6 +39,7 @@ button {
     padding: 0;
 }
 
+
 #center {
     display: block;
     background: linear-gradient(90deg, #ff028979, #8400ff7a);
@@ -51,7 +54,7 @@ button {
 }
 
 #image {
-    background: url(https://www.tsilhqotin.ca/wp-content/uploads/2021/02/FraserRiver-scaled.jpg);
+    background: whitesmoke;
     background-repeat: repeat-y;
     background-position: center;
     background-size: cover;
@@ -75,9 +78,10 @@ button {
     left: 0;
     bottom: 0;
     height: fit-content;
-    width: 105vw;
+    width: 100%;
     background-color:white;
-    
+    text-align: center;
+    padding: 10px;
 }
 
 li {
