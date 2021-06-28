@@ -51,6 +51,7 @@ button {
     border-top-left-radius: 50% 20%;
     border-top-right-radius: -50% -20%;
     height: auto;
+    box-shadow: 1px 4px 4px 1px rgba(0, 0, 0, 0.432);
 }
 
 #image {
