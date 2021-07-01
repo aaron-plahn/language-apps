@@ -2,6 +2,35 @@
 <button [routerLink]="['lists']">Paradigms and Vocabulary Lists</button>
 
 <div *ngIf="checkboxData">
-    <app-switch (checked)="true" [checkboxData]="checkboxData"></app-switch>
+  <app-switch (checked)="(true)" [checkboxData]="checkboxData"></app-switch>
 </div>
 
+<!-- TODO JB Style term widget (widets/term)-->
+<h1>JBam to do</h1>
+<h2>0. style this home page</h2>
+<h2>
+  style terms (index) component- (see to do at localhost:4200/terms or in
+  terms.component)
+</h2>
+<h1>2. Style term widget (widgets/term)</h1>
+<app-term [termID]="1"></app-term>
+
+<h2>
+  3. style vocabulary list detail view (pages/vocabulary-list) note you should
+  use the term-detail app-term component for the current term
+</h2>
+<app-vocabulary-list></app-vocabulary-list>
+
+<h2>4. style vocabulary list index view (pages/vocabulary-lists)</h2>
+
+<h2>
+  5. style term detail view (pages/term-detail) note that this will probably
+  simply be a placeholder for term widget
+</h2>
+
+<!--TODO JB 
+    Create \ style this home page
+    Create \ style new credits page 
+
+    Style audio component
+-->

@@ -1,4 +1,24 @@
+<!-- JB TO DO-->
+<h1>JB TO DO</h1>
+<ol>
+  <li>display data in a table</li>
+  <li>display a default place holder if no English is provided</li>
+  <li>filter terms for which no Chilcotin is provided</li>
+  <li>paginate data (load results 1-20, 21-40, etc.)</li>
+  <li>add filters by each column</li>
+  <li>
+    navigate to term detail for a given term (/term-detail/:id) when a term or
+    termEnglish is clicked
+  </li>
+  <li>
+    *icing on cake navigate to contributor's bio page when you click on a
+    contributor's name
+  </li>
+</ol>
+
+<!-- component starts here-->
 <div *ngIf="terms">
-    <div *ngFor="let term of terms">
-    </div>
+  <div *ngFor="let term of terms">
+    {{ term.term }} | {{ term.termEnglish }} | {{ term.contributor }}
+  </div>
 </div>
