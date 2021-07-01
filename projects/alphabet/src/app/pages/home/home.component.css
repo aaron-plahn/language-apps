@@ -22,7 +22,7 @@ button {
 #logo {
     border-radius: 8px; 
     box-shadow: 2px 5px 5px 2px;
-    background: linear-gradient(90deg, #ff028996, #8400ff7a);
+    background: linear-gradient(90deg, #ff0289, #8400ff);
     border-color: white;
     border-style: solid;
 }
@@ -54,8 +54,9 @@ button {
     box-shadow: 1px 4px 4px 1px rgba(0, 0, 0, 0.432);
 }
 
+
 #image {
-    background: whitesmoke;
+    background: url(https://www.tsilhqotin.ca/wp-content/uploads/2021/02/FraserRiver-scaled.jpg);
     background-repeat: repeat-y;
     background-position: center;
     background-size: cover;
