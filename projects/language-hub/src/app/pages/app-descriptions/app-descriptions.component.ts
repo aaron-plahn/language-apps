@@ -36,7 +36,7 @@ export class AppDescriptionsComponent implements OnInit {
       links: {
         google:
           'https://play.google.com/store/apps/details?id=ca.tsilhqotinlanguage.tsilhqotinalphabet&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1',
-        web: 'https://www.tsilhqotinlanguage.ca/game/Alphabet/',
+        web: 'https://tsilhqotinlanguage.ca/game/2021/alphabet/',
       },
       image:
         'https://api.tsilhqotinlanguage.ca/uploads/app_icon_alphabet_25678c6c86.png',
