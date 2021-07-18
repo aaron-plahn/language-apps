@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DropdownData } from '../../components/widgets/dropdown/dropdown-data';
+import { DictionaryDataAPI } from './IDictionaryDataAPI';
 import { Term } from './term';
 import { TermWithValues } from './term-with-values';
 import { VocabularyList } from './vocabulary-list';
@@ -10,7 +11,7 @@ import { VocabularyList } from './vocabulary-list';
 @Injectable({
   providedIn: 'root',
 })
-export class DictionaryDataService {
+export class DictionaryDataService implements DictionaryDataAPI {
   private baseAPIURL: string = 'https://api.tsilhqotinlanguage.ca';
 
   private endpoints: object = {
@@ -45,6 +46,8 @@ export class DictionaryDataService {
     );
   }
 
+  // TODO this returns a dto
+  // return a validated VocabularyList[] instead
   getAllVocabularyLists() {
     let endpoint: string = this.endpoints['vocabularyLists'];
     return this.http.get(endpoint);
