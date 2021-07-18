@@ -6,7 +6,7 @@ import { DropdownData } from '../../components/widgets/dropdown/dropdown-data';
 import { DictionaryDataAPI } from './IDictionaryDataAPI';
 import { Term } from './term';
 import { TermWithValues } from './term-with-values';
-import { VocabularyList } from './vocabulary-list';
+import { VocabularyList, VocabularyListSummary } from './vocabulary-list';
 
 @Injectable({
   providedIn: 'root',
@@ -46,14 +46,14 @@ export class DictionaryDataService implements DictionaryDataAPI {
     );
   }
 
-  // TODO this returns a dto
-  // return a validated VocabularyList[] instead
-  getAllVocabularyLists(): Observable<VocabularyList[]> {
+  getAllVocabularyListSummaries(): Observable<VocabularyListSummary[]> {
     let endpoint: string = this.endpoints['vocabularyLists'];
     return this.http.get(endpoint).pipe(
       map((data) => {
         if (Array.isArray(data) && data.length > 0)
-          return data.map(this.vocabularyListAdapter);
+          return data
+            .map(this.vocabularyListAdapter)
+            .filter((list) => list?.id);
         return [];
       })
     );
@@ -193,6 +193,22 @@ export class DictionaryDataService implements DictionaryDataAPI {
       comments: this.returnValueOrNullIfUndefined(
         apiVocabularyList['comments']
       ),
+    };
+  }
+
+  // TODO [DRY]: reuse this logic in vocabularyListAdapter
+  private vocabularyListSummaryAdapter(
+    apiVocabularyList
+  ): VocabularyListSummary {
+    const { name, name_english, id, credits } = apiVocabularyList;
+
+    if (!id || (!name && !name_english)) return undefined;
+
+    return {
+      name: this.returnValueOrNullIfUndefined(name),
+      name_english: this.returnValueOrNullIfUndefined(name_english),
+      id: this.returnValueOrNullIfUndefined(id),
+      credits: this.returnValueOrNullIfUndefined(credits),
     };
   }
 
