@@ -50,7 +50,13 @@ export class DictionaryDataService implements DictionaryDataAPI {
   // return a validated VocabularyList[] instead
   getAllVocabularyLists() {
     let endpoint: string = this.endpoints['vocabularyLists'];
-    return this.http.get(endpoint);
+    return this.http.get(endpoint).pipe(
+      map((data) => {
+        if (Array.isArray(data) && data.length > 0)
+          return data.map(this.vocabularyListAdapter);
+        return [];
+      })
+    );
   }
 
   getVocabularyListByID(id: string): Observable<VocabularyList> {
@@ -157,8 +163,7 @@ export class DictionaryDataService implements DictionaryDataAPI {
   }
 
   private termAdapter(apiTerm) {
-    let adaptedTerm;
-    adaptedTerm = {
+    return {
       id: this.throwErrorIfUndefined(apiTerm.id),
       term: this.returnValueOrNullIfUndefined(apiTerm.term),
       termEnglish: this.returnValueOrNullIfUndefined(apiTerm.term_english),
@@ -170,7 +175,25 @@ export class DictionaryDataService implements DictionaryDataAPI {
         `${apiTerm.contributor?.first_name} ${apiTerm.contributor?.last_name}`
       ),
     };
-    return adaptedTerm;
+  }
+
+  private vocabularyListAdapter(apiVocabularyList): VocabularyList {
+    let variables = this.parseVocabularyListForVariables(apiVocabularyList);
+    if (!variables) throw new Error(`failed to parse variables`);
+    if (!apiVocabularyList['name'] && !apiVocabularyList['name_english'])
+      throw new Error(`failed to parse unnamed vocabulary list.`);
+    return {
+      name: this.returnValueOrNullIfUndefined(apiVocabularyList['name']),
+      name_english: this.returnValueOrNullIfUndefined(
+        apiVocabularyList['name_english']
+      ),
+      id: this.throwErrorIfUndefined(apiVocabularyList['id']),
+      variables: variables || { dropboxes: [], checkboxes: [] },
+      credits: this.returnValueOrNullIfUndefined(apiVocabularyList['credits']),
+      comments: this.returnValueOrNullIfUndefined(
+        apiVocabularyList['comments']
+      ),
+    };
   }
 
   private returnValueOrNullIfUndefined(value: any): any {
