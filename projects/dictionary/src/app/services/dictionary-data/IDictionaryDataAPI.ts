@@ -8,4 +8,5 @@ export interface DictionaryDataAPI {
   getVocabularyListByID(id: string): Observable<VocabularyList>;
   getAllTerms(): Observable<Term[]>;
   getTermByID(id: string): Observable<Term>;
+  getAllVocabularyLists(): Observable<VocabularyList[]>;
 }

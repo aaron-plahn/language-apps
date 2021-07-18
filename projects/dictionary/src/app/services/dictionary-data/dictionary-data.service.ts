@@ -48,7 +48,7 @@ export class DictionaryDataService implements DictionaryDataAPI {
 
   // TODO this returns a dto
   // return a validated VocabularyList[] instead
-  getAllVocabularyLists() {
+  getAllVocabularyLists(): Observable<VocabularyList[]> {
     let endpoint: string = this.endpoints['vocabularyLists'];
     return this.http.get(endpoint).pipe(
       map((data) => {
