@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { DropdownData } from '../../components/widgets/dropdown/dropdown-data';
 import { DictionaryDataAPI } from './IDictionaryDataAPI';
 import { Term } from './term';
-import { TermWithValues } from './term-with-values';
+import { VocabularyListEntry } from './term-with-values';
 import { VocabularyList, VocabularyListSummary } from './vocabulary-list';
 
 @Injectable({
@@ -22,13 +22,13 @@ export class DictionaryDataService implements DictionaryDataAPI {
 
   constructor(private http: HttpClient) {}
 
-  getTermsForListByListID(id: string): Observable<TermWithValues[]> {
+  getTermsForListByListID(id: string): Observable<VocabularyListEntry[]> {
     let endpoint: string = `${this.endpoints['listTerms']}${id}`;
     return this.http.get(endpoint).pipe(
       map((data: any) => {
-        let terms: TermWithValues[] = [];
+        let terms: VocabularyListEntry[] = [];
         for (let datum of data) {
-          let currentTerm: TermWithValues = {
+          let currentTerm: VocabularyListEntry = {
             term: {
               id: datum.term.id,
               term: datum.term.term,
@@ -52,7 +52,7 @@ export class DictionaryDataService implements DictionaryDataAPI {
       map((data) => {
         if (Array.isArray(data) && data.length > 0)
           return data
-            .map(this.vocabularyListAdapter)
+            .map(this.vocabularyListSummaryAdapter)
             .filter((list) => list?.id);
         return [];
       })

@@ -1,6 +1,6 @@
 import { Term } from './term';
 
-export type TermWithValues = {
-    "term": Term,
-    "variableValues": object
-}
+export type VocabularyListEntry = {
+  term: Term;
+  variableValues: object;
+};

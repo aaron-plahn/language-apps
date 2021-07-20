@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AudioService } from 'audio';
-import { DictionaryDataService } from '../../../services/dictionary-data/dictionary-data.service';
-import { TermWithValues } from '../../../services/dictionary-data/term-with-values';
+import { MockDictionaryDataService } from '../../../services/dictionary-data/mock-dictionary-data.service';
+import { VocabularyListEntry } from '../../../services/dictionary-data/term-with-values';
 import { VocabularyList } from '../../../services/dictionary-data/vocabulary-list';
 import { DictionarySearchService } from '../../../services/dictionary-search/dictionary-search.service';
 import { ListQuery } from '../../../services/dictionary-search/list-query';
@@ -16,8 +16,8 @@ import { ListVariable } from './list-variable';
   styleUrls: ['./vocabulary-list.component.css'],
 })
 export class VocabularyListComponent implements OnInit {
-  selectedTerm: TermWithValues;
-  terms: TermWithValues[];
+  selectedTerm: VocabularyListEntry;
+  entries: VocabularyListEntry[];
   vocabularyList: VocabularyList;
   listID: string;
 
@@ -25,19 +25,21 @@ export class VocabularyListComponent implements OnInit {
   checkboxes: ListVariable<boolean>[] = [];
 
   constructor(
-    private dictionaryData: DictionaryDataService,
+    private dictionaryData: MockDictionaryDataService,
     private dictionarySearch: DictionarySearchService,
     private route: ActivatedRoute,
     private audio: AudioService
   ) {}
 
   ngOnInit(): void {
-    this.dictionaryData.getTermsForListByListID('1').subscribe((terms: any) => {
-      this.terms = terms;
-      for (let term of terms) {
-        console.log(`id for this term is: ${term.id}`);
-      }
-    });
+    this.dictionaryData
+      .getTermsForListByListID('1')
+      .subscribe((entries: VocabularyListEntry[]) => {
+        this.entries = entries;
+        for (let entry of entries) {
+          console.log(`id for this term is: ${entry.term.id}`);
+        }
+      });
 
     this.dictionaryData.getVocabularyListByID('1').subscribe((list: any) => {
       this.vocabularyList = list;
@@ -88,9 +90,9 @@ export class VocabularyListComponent implements OnInit {
 
   search(q: ListQuery<any>) {
     console.log(`Searching with query: ${q}`);
-    let result: TermWithValues = this.dictionarySearch.findOneUniqueTerm(
+    let result: VocabularyListEntry = this.dictionarySearch.findOneUniqueTerm(
       q,
-      this.terms
+      this.entries
     );
     if (result) {
       console.log(`got a match: ${result}`);

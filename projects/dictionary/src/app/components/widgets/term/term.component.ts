@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AudioService } from 'audio';
-import { DictionaryDataService } from '../../../services/dictionary-data/dictionary-data.service';
+import { MockDictionaryDataService } from '../../../services/dictionary-data/mock-dictionary-data.service';
 import { Term } from '../../../services/dictionary-data/term';
 
 @Component({
@@ -17,7 +17,7 @@ export class TermComponent implements OnInit {
     this._id = id;
   }
   constructor(
-    private dictionaryDataService: DictionaryDataService,
+    private dictionaryDataService: MockDictionaryDataService,
     private audio: AudioService
   ) {}
 
