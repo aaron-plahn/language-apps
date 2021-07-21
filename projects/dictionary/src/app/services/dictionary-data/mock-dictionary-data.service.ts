@@ -6,16 +6,17 @@ import { VocabularyListEntry } from './term-with-values';
 import { VocabularyList, VocabularyListSummary } from './vocabulary-list';
 
 const wrapMockDataWithLabel = (field: string, label: string): string =>
-  `MOCK-DATA-${label.toUpperCase()} ${field}`;
+  `${label.toUpperCase()} ${field}`;
 
-const buildWrapMockTermWithLabel =
+const buildWrapMockStringWithLabel =
   (label: string = '') =>
   (field: string): string =>
     wrapMockDataWithLabel(field, label);
 
-const wrapMockTermStrings = buildWrapMockTermWithLabel('term');
-const wrapMockVocabularyListStrings =
-  buildWrapMockTermWithLabel('vocabulary list');
+const mockContributor = buildWrapMockStringWithLabel('-CN-')('Jane Buck');
+const wrapMockTermStrings = buildWrapMockStringWithLabel('-T-');
+const wrapMockTermEnglishStrings = buildWrapMockStringWithLabel('-TE-');
+const wrapMockVocabularyListStrings = buildWrapMockStringWithLabel('-VL-');
 
 const positiveCheckbox = {
   name: 'positive',
@@ -94,71 +95,86 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
     {
       id: '1',
       term: wrapMockTermStrings('term with no english'),
+      contributor: mockContributor,
     },
     {
       id: '2',
       term: wrapMockTermStrings('term with english (in language)'),
-      termEnglish: wrapMockTermStrings('term with english (english)'),
+      termEnglish: wrapMockTermEnglishStrings('term with english (english)'),
     },
     {
       id: '3',
       term: wrapMockTermStrings('I am walking (in language)'),
-      termEnglish: 'I am walking (in English)',
+      termEnglish: wrapMockTermEnglishStrings('I am walking (in English)'),
     },
     {
       id: '4',
       term: wrapMockTermStrings('You are walking (in language)'),
-      termEnglish: wrapMockTermStrings('You are walking (in English)'),
+      termEnglish: wrapMockTermEnglishStrings('You are walking (in English)'),
     },
     {
       id: '5',
       term: wrapMockTermStrings('He is walking (in language)'),
-      termEnglish: 'He is walking (in English)',
+      termEnglish: wrapMockTermEnglishStrings('He is walking (in English)'),
     },
     {
       id: '6',
       term: wrapMockTermStrings('I am not walking (in language)'),
-      termEnglish: 'I am not walking (in English)',
+      termEnglish: wrapMockTermEnglishStrings('I am not walking (in English)'),
     },
     {
       id: '7',
       term: wrapMockTermStrings('You are not walking (in language)'),
-      termEnglish: wrapMockTermStrings('You are not walking (in English)'),
+      termEnglish: wrapMockTermEnglishStrings(
+        'You are not walking (in English)'
+      ),
     },
     {
       id: '8',
       term: wrapMockTermStrings('He is not walking (in language)'),
-      termEnglish: 'He is not walking (in English)',
+      termEnglish: wrapMockTermEnglishStrings('He is not walking (in English)'),
     },
     {
       id: '9',
       term: wrapMockTermStrings('unit 1 chapter 1 term (in language)'),
-      termEnglish: 'unit 1 chapter 1 term (in English)',
+      termEnglish: wrapMockTermEnglishStrings(
+        'unit 1 chapter 1 term (in English)'
+      ),
     },
     {
       id: '10',
       term: wrapMockTermStrings('unit 1 chapter 2 term (in language)'),
-      termEnglish: wrapMockTermStrings('unit 2 chapter 2 term (in English)'),
+      termEnglish: wrapMockTermEnglishStrings(
+        'unit 2 chapter 2 term (in English)'
+      ),
     },
     {
       id: '11',
       term: wrapMockTermStrings('unit 1 chapter 3 term (in language)'),
-      termEnglish: 'unit 1 chapter 3 term (in English)',
+      termEnglish: wrapMockTermEnglishStrings(
+        'unit 1 chapter 3 term (in English)'
+      ),
     },
     {
       id: '12',
       term: wrapMockTermStrings('unit 2 chapter 1 term (in language)'),
-      termEnglish: 'unit 2 chapter 1 term (in English)',
+      termEnglish: wrapMockTermEnglishStrings(
+        'unit 2 chapter 1 term (in English)'
+      ),
     },
     {
       id: '13',
       term: wrapMockTermStrings('unit 2 chapter 2 term (in language)'),
-      termEnglish: wrapMockTermStrings('unit 2 chapter 2 term (in English)'),
+      termEnglish: wrapMockTermEnglishStrings(
+        'unit 2 chapter 2 term (in English)'
+      ),
     },
     {
       id: '14',
       term: wrapMockTermStrings('unit 2 chapter 3 term (in language)'),
-      termEnglish: 'unit 2 chapter 3 term (in English)',
+      termEnglish: wrapMockTermEnglishStrings(
+        'unit 2 chapter 3 term (in English)'
+      ),
     },
     {
       id: '15',

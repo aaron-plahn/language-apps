@@ -116,7 +116,7 @@ export class DictionaryDataService implements DictionaryDataAPI {
       if (variable.type === 'dropbox') {
         let dropbox = this.parseDropbox(variable);
         if (!dropbox) throw new Error(`Failed to parse dropbox.`);
-        console.log(`Pushing dropbox ${dropbox.prompt} to parsedVariables`);
+        console.log(`Pushing dropbox ${dropbox.name} to parsedVariables`);
         parsedVariables.dropboxes.push(dropbox);
       }
       if (variable.type === 'checkbox')

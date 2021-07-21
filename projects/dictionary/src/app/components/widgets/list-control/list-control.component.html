@@ -1,3 +1,6 @@
 <div *ngIf="_listVariable">
-    <app-dropdown [dropdownData]="_listVariable.data" (onItemSelection)="handleNewSelection($event)"></app-dropdown>
+  <app-dropdown
+    [dropdownData]="_listVariable.data"
+    (onItemSelection)="handleNewSelection($event)"
+  ></app-dropdown>
 </div>

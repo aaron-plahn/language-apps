@@ -5,9 +5,15 @@
 
 <div *ngIf="dropboxes">
   <div *ngFor="let dropbox of dropboxes">
-    <app-list-control
-      [listVariable]="dropbox"
-      (onChange)="handleNewSelection($event)"
-    ></app-list-control>
+    <div *ngIf="dropbox.name">
+      {{ dropbox.name }}
+      dropbox found
+      <!-- <app-list-control
+        [listVariable]="dropbox"
+        (onChange)="handleNewSelection($event)"
+      ></app-list-control> -->
+    </div>
+
+    <div *ngIf="!dropbox.name">Unnamed dropbox.</div>
   </div>
 </div>
