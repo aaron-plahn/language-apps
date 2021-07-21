@@ -10,9 +10,14 @@ import { ListVariable } from '../../pages/vocabulary-list/list-variable';
 export class ListControlComponent<T> implements OnInit {
   _listVariable: ListVariable<T>;
 
+  controlType: 'checkbox' | 'dropbox';
+
   @Input() public set listVariable(v: ListVariable<T>) {
     console.log({ listVariable: v });
     this._listVariable = v;
+
+    this.controlType =
+      v.type === 'dropbox' || v.type === 'checkbox' ? v.type : undefined;
   }
 
   @Output() public onChange = new EventEmitter<DropdownItem<T>>();
@@ -24,4 +29,16 @@ export class ListControlComponent<T> implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getControlType(): 'checkbox' | 'dropbox' | undefined {
+    return this.controlType || undefined;
+  }
+
+  isCheckbox(): boolean {
+    return this.getControlType() === 'checkbox';
+  }
+
+  isDropbox(): boolean {
+    return this.getControlType() === 'dropbox';
+  }
 }

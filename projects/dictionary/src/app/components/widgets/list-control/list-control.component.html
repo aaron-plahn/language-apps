@@ -1,6 +1,15 @@
-<div *ngIf="_listVariable">
-  <app-dropdown
-    [dropdownData]="_listVariable.data"
-    (onItemSelection)="handleNewSelection($event)"
-  ></app-dropdown>
+<div *ngIf="_listVariable && controlType">
+  <div *ngIf="isDropbox()">
+    <app-dropdown
+      [dropdownData]="_listVariable.data"
+      (onItemSelection)="handleNewSelection($event)"
+    ></app-dropdown>
+  </div>
+
+  <div *ngIf="isCheckbox()">
+    <app-switch
+      [checkboxData]="_listVariable.data"
+      (onItemSelection)="handleNewSelection($event)"
+    ></app-switch>
+  </div>
 </div>

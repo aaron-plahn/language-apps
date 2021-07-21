@@ -8,7 +8,7 @@ import { VocabularyList } from '../../../services/dictionary-data/vocabulary-lis
   styleUrls: ['./vocabulary-lists.component.css'],
 })
 export class VocabularyListsComponent implements OnInit {
-  lists: VocabularyList[];
+  lists: VocabularyList<any>[];
 
   constructor(private data: MockDictionaryDataService) {}
 
