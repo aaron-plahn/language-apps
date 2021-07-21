@@ -30,10 +30,8 @@ export class ListVariable<T> {
   }
 
   isValidIndex(i: number) {
-    console.log(`this.data.items.length = ${this.data.items.length}`);
     if (!this.data?.items) return false; // null, empty, undefined
     let isValidIndex: boolean = 0 <= i && i < this.data.items.length;
-    console.log(`The index ${i} is valid: ${isValidIndex}`);
     return isValidIndex; // i in range of items
   }
 

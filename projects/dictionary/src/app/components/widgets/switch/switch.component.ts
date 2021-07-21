@@ -15,7 +15,6 @@ export class SwitchComponent implements OnInit {
 
   _data: DropdownData<boolean>;
   @Input() public set checkboxData(data: DropdownData<boolean>) {
-    console.log(`Setting checkbox data.`);
     if (!this.isValidCheckboxData(data))
       throw new Error(`Invalid checkbox data.`);
     this._data = data;
@@ -28,7 +27,6 @@ export class SwitchComponent implements OnInit {
     const selectedItem: DropdownItem<boolean> = this.getItemFromBoolean(
       this._checked
     );
-    console.log(`You selected: ${selectedItem.value}: ${selectedItem.display}`);
     this.currentLabel = selectedItem.display || '';
     this.onChange.emit(selectedItem);
   }

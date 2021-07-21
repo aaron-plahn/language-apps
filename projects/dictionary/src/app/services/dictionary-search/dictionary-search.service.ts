@@ -10,6 +10,7 @@ export class DictionarySearchService {
 
   findOneUniqueTerm(query: ListQuery<any>, allTerms: VocabularyListEntry[]) {
     let results: VocabularyListEntry[] = this.findAllTerms(query, allTerms);
+
     if (results.length === 1) return results[0];
     return null;
   }
@@ -32,7 +33,6 @@ export class DictionarySearchService {
         let dataValue = t.variableValues[queryField];
 
         if (!(dataValue === queryValue)) {
-          console.log(`No match found between ${dataValue} and ${queryValue}`);
           match = false;
           continue;
         }

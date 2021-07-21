@@ -13,7 +13,6 @@ export class ListControlComponent<T> implements OnInit {
   controlType: 'checkbox' | 'dropbox';
 
   @Input() public set listVariable(v: ListVariable<T>) {
-    console.log({ listVariable: v });
     this._listVariable = v;
 
     this.controlType =

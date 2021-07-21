@@ -13,8 +13,10 @@ export class TermComponent implements OnInit {
 
   _id: string;
   @Input() public set termID(id: string) {
+    console.log(`Getting term ${id}`);
     if (!id && !(id === '0')) throw new Error(`termID is undefined`);
     this._id = id;
+    console.log(`_id: ${this._id}`);
   }
   constructor(
     private dictionaryDataService: MockDictionaryDataService,
@@ -23,13 +25,11 @@ export class TermComponent implements OnInit {
 
   ngOnInit(): void {
     this.dictionaryDataService.getTermByID(this._id).subscribe((term: Term) => {
-      console.log(`Getting term with id:${this._id} for the term widget.`);
       this.term = term;
     });
   }
 
   playAudio() {
-    console.log('playing audio');
     let url: string = this.term.audioURL;
     this.audio.playAudioFromURL(this.term.audioURL);
   }

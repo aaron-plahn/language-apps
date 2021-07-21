@@ -17,10 +17,11 @@ import { ListVariable } from './list-variable';
   styleUrls: ['./vocabulary-list.component.css'],
 })
 export class VocabularyListComponent implements OnInit {
-  selectedTerm: VocabularyListEntry;
+  selectedEntry: VocabularyListEntry;
   entries: VocabularyListEntry[];
   vocabularyList: VocabularyList<any>;
   listID: string;
+  selectedTermId: string;
 
   dropboxes: ListVariable<string>[] = [];
   checkboxes: ListVariable<boolean>[] = [];
@@ -37,24 +38,16 @@ export class VocabularyListComponent implements OnInit {
       .getTermsForListByListID('1')
       .subscribe((entries: VocabularyListEntry[]) => {
         this.entries = entries;
-        for (let entry of entries) {
-          console.log(`id for this term is: ${entry.term.id}`);
-        }
       });
 
     this.dictionaryData.getVocabularyListByID('1').subscribe((list: any) => {
       this.vocabularyList = list;
-      console.log(`Here's the first dropbox:`);
-      console.log(list.variables.dropboxes);
       this.setDropboxes(list.variables.dropboxes);
       this.setCheckboxes(list.variables.checkboxes);
     });
   }
 
   handleNewSelection(data: DropdownItem<any>) {
-    console.log(`Variable options updated.`);
-    console.log(`Data: ${data.value}`);
-    console.log(`Display: ${data.display}`);
     this.search(this.createSearchQuery());
   }
 
@@ -91,24 +84,16 @@ export class VocabularyListComponent implements OnInit {
   }
 
   search(q: ListQuery<any>) {
-    console.log(`Searching with query: ${q}`);
     let result: VocabularyListEntry = this.dictionarySearch.findOneUniqueTerm(
       q,
       this.entries
     );
-    if (result) {
-      console.log(`got a match: ${result}`);
-    } else {
-      console.log(`No luck this time!`);
-    }
-    console.log(`selected result`);
-    console.log(result);
-    this.selectedTerm = result;
+    this.selectedEntry = result;
+    this.selectedTermId = result.term.id;
   }
 
   private setDropboxes(dropboxes: DropdownData<string>[]) {
     if (typeof dropboxes === 'undefined') {
-      console.log(' NO DROPBOXES FOUND');
       return;
     }
 

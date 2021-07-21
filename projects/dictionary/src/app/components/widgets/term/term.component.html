@@ -5,8 +5,8 @@
   {{ term.termEnglish }}
 </div>
 <div *ngIf="term?.audioURL">
-  {{ term.audioURL }}
   <img
+    width="200"
     id="play-icon"
     src="https://api.tsilhqotinlanguage.ca/uploads/audio_play_button_pixabay_f799959630.png"
     (click)="playAudio()"

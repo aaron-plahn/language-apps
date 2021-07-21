@@ -18,7 +18,7 @@
 
 <!-- component starts here-->
 <div *ngIf="terms">
-  <div *ngFor="let term of terms">
+  <div *ngFor="let term of terms" [routerLink]="['/terms', term.id]">
     {{ term.term }} | {{ term.termEnglish }} | {{ term.contributor }}
   </div>
 </div>

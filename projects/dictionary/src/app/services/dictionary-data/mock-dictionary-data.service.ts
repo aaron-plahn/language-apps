@@ -11,6 +11,9 @@ import {
   VocabularyListSummary,
 } from './vocabulary-list';
 
+const mockAudioUrl =
+  'https://api.tsilhqotinlanguage.ca/uploads/5673485_411465d958.wav';
+
 const wrapMockDataWithLabel = (field: string, label: string): string =>
   `${label.toUpperCase()} ${field}`;
 
@@ -106,89 +109,122 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
       id: '1',
       term: wrapMockTermStrings('term with no english'),
       contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '2',
-      term: wrapMockTermStrings('term with english (in language)'),
+      term: wrapMockTermStrings('term with english '),
       termEnglish: wrapMockTermEnglishStrings('term with english (english)'),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '3',
-      term: wrapMockTermStrings('I am walking (in language)'),
+      term: wrapMockTermStrings('I am walking '),
       termEnglish: wrapMockTermEnglishStrings('I am walking (in English)'),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '4',
-      term: wrapMockTermStrings('You are walking (in language)'),
+      term: wrapMockTermStrings('You are walking '),
       termEnglish: wrapMockTermEnglishStrings('You are walking (in English)'),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '5',
-      term: wrapMockTermStrings('He is walking (in language)'),
+      term: wrapMockTermStrings('He is walking '),
       termEnglish: wrapMockTermEnglishStrings('He is walking (in English)'),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '6',
-      term: wrapMockTermStrings('I am not walking (in language)'),
+      term: wrapMockTermStrings('I am not walking '),
       termEnglish: wrapMockTermEnglishStrings('I am not walking (in English)'),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '7',
-      term: wrapMockTermStrings('You are not walking (in language)'),
+      term: wrapMockTermStrings('You are not walking '),
       termEnglish: wrapMockTermEnglishStrings(
         'You are not walking (in English)'
       ),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '8',
-      term: wrapMockTermStrings('He is not walking (in language)'),
+      term: wrapMockTermStrings('He is not walking '),
       termEnglish: wrapMockTermEnglishStrings('He is not walking (in English)'),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '9',
-      term: wrapMockTermStrings('unit 1 chapter 1 term (in language)'),
+      term: wrapMockTermStrings('unit 1 chapter 1 term '),
       termEnglish: wrapMockTermEnglishStrings(
         'unit 1 chapter 1 term (in English)'
       ),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '10',
-      term: wrapMockTermStrings('unit 1 chapter 2 term (in language)'),
+      term: wrapMockTermStrings('unit 1 chapter 2 term '),
       termEnglish: wrapMockTermEnglishStrings(
         'unit 2 chapter 2 term (in English)'
       ),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '11',
-      term: wrapMockTermStrings('unit 1 chapter 3 term (in language)'),
+      term: wrapMockTermStrings('unit 1 chapter 3 term '),
       termEnglish: wrapMockTermEnglishStrings(
         'unit 1 chapter 3 term (in English)'
       ),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '12',
-      term: wrapMockTermStrings('unit 2 chapter 1 term (in language)'),
+      term: wrapMockTermStrings('unit 2 chapter 1 term '),
       termEnglish: wrapMockTermEnglishStrings(
         'unit 2 chapter 1 term (in English)'
       ),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '13',
-      term: wrapMockTermStrings('unit 2 chapter 2 term (in language)'),
+      term: wrapMockTermStrings('unit 2 chapter 2 term '),
       termEnglish: wrapMockTermEnglishStrings(
         'unit 2 chapter 2 term (in English)'
       ),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '14',
-      term: wrapMockTermStrings('unit 2 chapter 3 term (in language)'),
+      term: wrapMockTermStrings('unit 2 chapter 3 term '),
       termEnglish: wrapMockTermEnglishStrings(
         'unit 2 chapter 3 term (in English)'
       ),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
     },
     {
       id: '15',
-      term: wrapMockTermStrings('term that is not in a list (in language)'),
+      term: wrapMockTermStrings('term that is not in a list '),
+      contributor: mockContributor,
+      audioURL: mockAudioUrl,
+    },
+    {
+      id: '16',
+      term: wrapMockTermStrings('term with no audio'),
     },
   ];
 
@@ -315,7 +351,7 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
 
   getTermsForListByListID(id: string): Observable<VocabularyListEntry[]> {
     const result = this.mockTermsForLists[id];
-    console.log(`get terms for list by id results ${result}`);
+
     return of(result);
   }
 

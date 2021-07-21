@@ -17,19 +17,14 @@ import {
 export function parseCheckbox(variable): DropdownData<boolean> {
   if (!variable.validValues)
     throw new Error(`Unable to parse dropbox: items undefined.`);
-  console.log({
-    validValues: variable.validValues,
-  });
+
   if (!variable.validValues.every(({ value }) => typeof value === 'boolean'))
     throw new Error('Encountered non-boolean variables for checkbox');
   let output: DropdownData<boolean> = {
     prompt: variable.name,
     items: variable.validValues,
   };
-  console.log(`Parsed checkbox of length ${output.items.length}`);
-  for (let v of output.items) {
-    console.log(v.value);
-  }
+
   return output;
 }
 
@@ -40,10 +35,7 @@ export function parseDropbox(variable): DropdownData<string> {
     prompt: variable.name,
     items: variable.validValues,
   };
-  console.log(`Parsed dropbox of length ${output.items.length}`);
-  for (let v of output.items) {
-    console.log(v.value);
-  }
+
   return output;
 }
 
@@ -65,18 +57,14 @@ export function parseVocabularyListForVariables(
     checkboxes: [],
     dropboxes: [],
   };
-  console.log({
-    apiVariables,
-  });
+
   for (let variable of apiVariables) {
     if (!variable.type)
       throw new Error(`Encountered variable of unknown type.`);
-    console.log(`Processing variable ${variable.name}`);
-    console.log(`and items of length ${variable.validValues.length}`);
+
     if (variable.type === 'dropbox') {
       let dropbox = parseDropbox(variable);
       if (!dropbox) throw new Error(`Failed to parse dropbox.`);
-      console.log(`Pushing dropbox ${dropbox.prompt} to parsedVariables`);
       parsedVariables.dropboxes.push(dropbox);
     }
     if (variable.type === 'checkbox')

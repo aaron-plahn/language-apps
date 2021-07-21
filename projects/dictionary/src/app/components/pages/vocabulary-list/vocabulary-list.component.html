@@ -1,7 +1,7 @@
-<div *ngIf="selectedTerm?.term">
-  <app-term [id]="selectedTerm.term.id"></app-term>
-</div>
-<div *ngIf="!selectedTerm">No results found.</div>
+<!-- <app-term [termId]="4"></app-term> -->
+<!-- TODO add term component at top to bind to selected term -->
+<div *ngIf="selectedEntry">selectedEntry is defined</div>
+<div *ngIf="!selectedEntry">No results found.</div>
 
 <div *ngIf="dropboxes">
   <div *ngFor="let dropbox of dropboxes">
