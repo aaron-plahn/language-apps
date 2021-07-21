@@ -3,10 +3,106 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { DropdownData } from '../../components/widgets/dropdown/dropdown-data';
+import returnValueOrNullIfUndefined from '../utilities/returnValueOrNullIfUndefined';
+import throwErrorIfUndefined from '../utilities/throwErrorIfUndefined';
 import { DictionaryDataAPI } from './IDictionaryDataAPI';
 import { Term } from './term';
 import { VocabularyListEntry } from './term-with-values';
-import { VocabularyList, VocabularyListSummary } from './vocabulary-list';
+import {
+  ParsedVariables,
+  ParsedVocabularyList,
+  VocabularyListSummary,
+} from './vocabulary-list';
+
+export function parseCheckbox(variable): DropdownData<boolean> {
+  if (!variable.validValues)
+    throw new Error(`Unable to parse dropbox: items undefined.`);
+  console.log({
+    validValues: variable.validValues,
+  });
+  if (!variable.validValues.every(({ value }) => typeof value === 'boolean'))
+    throw new Error('Encountered non-boolean variables for checkbox');
+  let output: DropdownData<boolean> = {
+    prompt: variable.name,
+    items: variable.validValues,
+  };
+  console.log(`Parsed checkbox of length ${output.items.length}`);
+  for (let v of output.items) {
+    console.log(v.value);
+  }
+  return output;
+}
+
+export function parseDropbox(variable): DropdownData<string> {
+  if (!variable.validValues)
+    throw new Error(`Unable to parse dropbox: items undefined.`);
+  let output: DropdownData<string> = {
+    prompt: variable.name,
+    items: variable.validValues,
+  };
+  console.log(`Parsed dropbox of length ${output.items.length}`);
+  for (let v of output.items) {
+    console.log(v.value);
+  }
+  return output;
+}
+
+export function parseCheckboxItem(item) {
+  return item.map((i) => {
+    return {
+      value: Boolean(i.value),
+      display: i.display,
+    };
+  });
+}
+
+export function parseVocabularyListForVariables(
+  vocabularyList
+): ParsedVariables {
+  let apiVariables = vocabularyList.variables;
+  if (!apiVariables) throw new Error(`Variables undefined on vocabulary list.`);
+  let parsedVariables: ParsedVariables = {
+    checkboxes: [],
+    dropboxes: [],
+  };
+  console.log({
+    apiVariables,
+  });
+  for (let variable of apiVariables) {
+    if (!variable.type)
+      throw new Error(`Encountered variable of unknown type.`);
+    console.log(`Processing variable ${variable.name}`);
+    console.log(`and items of length ${variable.validValues.length}`);
+    if (variable.type === 'dropbox') {
+      let dropbox = parseDropbox(variable);
+      if (!dropbox) throw new Error(`Failed to parse dropbox.`);
+      console.log(`Pushing dropbox ${dropbox.prompt} to parsedVariables`);
+      parsedVariables.dropboxes.push(dropbox);
+    }
+    if (variable.type === 'checkbox')
+      parsedVariables.checkboxes.push(parseCheckbox(variable));
+  }
+  return parsedVariables;
+}
+
+export function vocabularyListAdapter(
+  apiVocabularyList
+): ParsedVocabularyList<any> {
+  let variables = parseVocabularyListForVariables(apiVocabularyList);
+  if (!variables) throw new Error(`failed to parse variables`);
+  if (!apiVocabularyList['name'] && !apiVocabularyList['name_english'])
+    throw new Error(`failed to parse unnamed vocabulary list.`);
+  return {
+    name: returnValueOrNullIfUndefined(apiVocabularyList['name']),
+    name_english: returnValueOrNullIfUndefined(
+      apiVocabularyList['name_english']
+    ),
+    id: throwErrorIfUndefined(apiVocabularyList['id']),
+    variables: variables || { dropboxes: [], checkboxes: [] },
+    credits: returnValueOrNullIfUndefined(apiVocabularyList['credits']),
+    comments: returnValueOrNullIfUndefined(apiVocabularyList['comments']),
+  };
+}
 
 @Injectable({
   providedIn: 'root',
@@ -59,22 +155,9 @@ export class DictionaryDataService implements DictionaryDataAPI {
     );
   }
 
-  getVocabularyListByID(id: string): Observable<VocabularyList> {
+  getVocabularyListByID(id: string): Observable<ParsedVocabularyList<any>> {
     let endpoint: string = `${this.endpoints['vocabularyLists']}${id}`;
-    return this.http.get(endpoint).pipe(
-      map((data) => {
-        let variables = this.parseVocabularyListForVariables(data);
-        if (!variables) throw new Error(`failed to parse variables`);
-        return {
-          name: data['name'],
-          name_english: data['name_english'],
-          id: data['id'],
-          variables: variables,
-          credits: data['credits'],
-          comments: data['comments'],
-        };
-      })
-    );
+    return this.http.get(endpoint).pipe(map(vocabularyListAdapter));
   }
 
   getAllTerms(): Observable<Term[]> {
@@ -100,98 +183,17 @@ export class DictionaryDataService implements DictionaryDataAPI {
     );
   }
 
-  private parseVocabularyListForVariables(vocabularyList) {
-    let apiVariables = vocabularyList.variables;
-    if (!apiVariables)
-      throw new Error(`Variables undefined on vocabulary list.`);
-    let parsedVariables = {
-      checkboxes: [],
-      dropboxes: [],
-    };
-    for (let variable of apiVariables) {
-      if (!variable.type)
-        throw new Error(`Encountered variable of unknown type.`);
-      console.log(`Processing variable ${variable.name}`);
-      console.log(`and items of length ${variable.validValues.length}`);
-      if (variable.type === 'dropbox') {
-        let dropbox = this.parseDropbox(variable);
-        if (!dropbox) throw new Error(`Failed to parse dropbox.`);
-        console.log(`Pushing dropbox ${dropbox.name} to parsedVariables`);
-        parsedVariables.dropboxes.push(dropbox);
-      }
-      if (variable.type === 'checkbox')
-        parsedVariables.checkboxes.push(this.parseCheckbox(variable));
-    }
-    return parsedVariables;
-  }
-
-  private parseCheckbox(variable) {
-    if (!variable.items)
-      throw new Error(`Unable to parse checkbox: items undefined.`);
-    let newItems = [];
-    for (let item of variable.items) {
-      newItems.push(this.parseCheckbox(item));
-    }
-    let output: DropdownData<boolean> = {
-      prompt: variable.name,
-      items: newItems,
-    };
-    return output;
-  }
-
-  private parseDropbox(variable) {
-    if (!variable.validValues)
-      throw new Error(`Unable to parse dropbox: items undefined.`);
-    let output: DropdownData<string> = {
-      prompt: variable.name,
-      items: variable.validValues,
-    };
-    console.log(`Parsed dropbox of length ${output.items.length}`);
-    for (let v of output.items) {
-      console.log(v.value);
-    }
-    return output;
-  }
-
-  private parseCheckboxItem(item) {
-    return item.map((i) => {
-      return {
-        value: Boolean(i.value),
-        display: i.display,
-      };
-    });
-  }
-
   private termAdapter(apiTerm) {
     return {
-      id: this.throwErrorIfUndefined(apiTerm.id),
-      term: this.returnValueOrNullIfUndefined(apiTerm.term),
-      termEnglish: this.returnValueOrNullIfUndefined(apiTerm.term_english),
-      audioURL: `${this.baseAPIURL}${this.returnValueOrNullIfUndefined(
+      id: throwErrorIfUndefined(apiTerm.id),
+      term: returnValueOrNullIfUndefined(apiTerm.term),
+      termEnglish: returnValueOrNullIfUndefined(apiTerm.term_english),
+      audioURL: `${this.baseAPIURL}${returnValueOrNullIfUndefined(
         apiTerm.audio[0]?.url
       )}`,
-      audioFormat: this.returnValueOrNullIfUndefined(apiTerm.audio[0]?.format),
-      contributor: this.returnValueOrNullIfUndefined(
+      audioFormat: returnValueOrNullIfUndefined(apiTerm.audio[0]?.format),
+      contributor: returnValueOrNullIfUndefined(
         `${apiTerm.contributor?.first_name} ${apiTerm.contributor?.last_name}`
-      ),
-    };
-  }
-
-  private vocabularyListAdapter(apiVocabularyList): VocabularyList {
-    let variables = this.parseVocabularyListForVariables(apiVocabularyList);
-    if (!variables) throw new Error(`failed to parse variables`);
-    if (!apiVocabularyList['name'] && !apiVocabularyList['name_english'])
-      throw new Error(`failed to parse unnamed vocabulary list.`);
-    return {
-      name: this.returnValueOrNullIfUndefined(apiVocabularyList['name']),
-      name_english: this.returnValueOrNullIfUndefined(
-        apiVocabularyList['name_english']
-      ),
-      id: this.throwErrorIfUndefined(apiVocabularyList['id']),
-      variables: variables || { dropboxes: [], checkboxes: [] },
-      credits: this.returnValueOrNullIfUndefined(apiVocabularyList['credits']),
-      comments: this.returnValueOrNullIfUndefined(
-        apiVocabularyList['comments']
       ),
     };
   }
@@ -205,20 +207,10 @@ export class DictionaryDataService implements DictionaryDataAPI {
     if (!id || (!name && !name_english)) return undefined;
 
     return {
-      name: this.returnValueOrNullIfUndefined(name),
-      name_english: this.returnValueOrNullIfUndefined(name_english),
-      id: this.returnValueOrNullIfUndefined(id),
-      credits: this.returnValueOrNullIfUndefined(credits),
+      name: returnValueOrNullIfUndefined(name),
+      name_english: returnValueOrNullIfUndefined(name_english),
+      id: returnValueOrNullIfUndefined(id),
+      credits: returnValueOrNullIfUndefined(credits),
     };
-  }
-
-  private returnValueOrNullIfUndefined(value: any): any {
-    if (typeof value === 'undefined') return null;
-    return value;
-  }
-
-  private throwErrorIfUndefined(value: any): any {
-    if (typeof value === 'undefined') throw new Error(`Value is undefined.`);
-    return value;
   }
 }

@@ -1,6 +1,6 @@
 import { DropdownItem } from './dropdown-item';
 
 export type DropdownData<T> = {
-  name: string;
+  prompt: string;
   items: DropdownItem<T>[];
 };

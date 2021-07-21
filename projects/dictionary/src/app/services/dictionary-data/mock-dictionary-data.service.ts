@@ -1,9 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { vocabularyListAdapter } from './dictionary-data.service';
 import { DictionaryDataAPI } from './IDictionaryDataAPI';
 import { Term } from './term';
 import { VocabularyListEntry } from './term-with-values';
-import { VocabularyList, VocabularyListSummary } from './vocabulary-list';
+import {
+  ParsedVocabularyList,
+  VocabularyList,
+  VocabularyListSummary,
+} from './vocabulary-list';
 
 const wrapMockDataWithLabel = (field: string, label: string): string =>
   `${label.toUpperCase()} ${field}`;
@@ -18,8 +24,9 @@ const wrapMockTermStrings = buildWrapMockStringWithLabel('-T-');
 const wrapMockTermEnglishStrings = buildWrapMockStringWithLabel('-TE-');
 const wrapMockVocabularyListStrings = buildWrapMockStringWithLabel('-VL-');
 
-const positiveCheckbox = {
+const positivecheckbox = {
   name: 'positive',
+  type: 'checkbox',
   validValues: [
     {
       display: 'positive',
@@ -34,6 +41,7 @@ const positiveCheckbox = {
 
 const singularPersonDropbox = {
   name: 'person',
+  type: 'dropbox',
   validValues: [
     {
       display: 'I',
@@ -52,6 +60,7 @@ const singularPersonDropbox = {
 
 const chapterDropbox = {
   name: 'chapter',
+  type: 'dropbox',
   validValues: [
     {
       display: 'Chapter 1',
@@ -70,6 +79,7 @@ const chapterDropbox = {
 
 const unitDropbox = {
   name: 'unit',
+  type: 'dropbox',
   validValues: [
     {
       display: 'Unit 1',
@@ -182,17 +192,14 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
     },
   ];
 
-  private mockVocabularyLists: VocabularyList[] = [
+  private mockVocabularyLists: VocabularyList<any>[] = [
     {
       id: '1',
       name: wrapMockVocabularyListStrings('Test Vocabulary List 1: Paradigm'),
       name_english: wrapMockVocabularyListStrings(
         'test vocabulary list 1 ENGLISH NAME'
       ),
-      variables: {
-        dropboxes: [singularPersonDropbox],
-        checkboxes: [positiveCheckbox],
-      },
+      variables: [singularPersonDropbox, positivecheckbox],
       credits: {
         contributor1: 'Contributor 1 contribution to test vocabulary list 1',
       },
@@ -203,10 +210,7 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
       name: wrapMockVocabularyListStrings(
         'Test Vocabulary List 2 (no English name)'
       ),
-      variables: {
-        dropboxes: [unitDropbox, chapterDropbox],
-        checkboxes: [],
-      },
+      variables: [unitDropbox, chapterDropbox],
       credits: {
         contributor2: 'Contributor 2 contribution to test vocabulary list 2',
       },
@@ -326,8 +330,10 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
     );
   }
 
-  getVocabularyListByID(id: string): Observable<VocabularyList> {
-    return of(this.mockVocabularyLists.find((vl) => vl.id === id));
+  getVocabularyListByID(id: string): Observable<ParsedVocabularyList<any>> {
+    return of(this.mockVocabularyLists.find((vl) => vl.id === id)).pipe(
+      map(vocabularyListAdapter)
+    );
   }
 
   getAllTerms(): Observable<Term[]> {

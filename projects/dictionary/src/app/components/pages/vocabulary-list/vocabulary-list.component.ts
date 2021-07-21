@@ -7,6 +7,7 @@ import { VocabularyList } from '../../../services/dictionary-data/vocabulary-lis
 import { DictionarySearchService } from '../../../services/dictionary-search/dictionary-search.service';
 import { ListQuery } from '../../../services/dictionary-search/list-query';
 import { Parameter } from '../../../services/dictionary-search/parameter';
+import { DropdownData } from '../../widgets/dropdown/dropdown-data';
 import { DropdownItem } from '../../widgets/dropdown/dropdown-item';
 import { ListVariable } from './list-variable';
 
@@ -18,7 +19,7 @@ import { ListVariable } from './list-variable';
 export class VocabularyListComponent implements OnInit {
   selectedTerm: VocabularyListEntry;
   entries: VocabularyListEntry[];
-  vocabularyList: VocabularyList;
+  vocabularyList: VocabularyList<any>;
   listID: string;
 
   dropboxes: ListVariable<string>[] = [];
@@ -46,6 +47,7 @@ export class VocabularyListComponent implements OnInit {
       console.log(`Here's the first dropbox:`);
       console.log(list.variables.dropboxes);
       this.setDropboxes(list.variables.dropboxes);
+      this.setCheckboxes(list.variables.checkboxes);
     });
   }
 
@@ -104,7 +106,7 @@ export class VocabularyListComponent implements OnInit {
     this.selectedTerm = result;
   }
 
-  private setDropboxes(dropboxes) {
+  private setDropboxes(dropboxes: DropdownData<string>[]) {
     if (typeof dropboxes === 'undefined') {
       console.log(' NO DROPBOXES FOUND');
       return;
@@ -112,6 +114,14 @@ export class VocabularyListComponent implements OnInit {
 
     for (let d of dropboxes) {
       this.dropboxes.push(new ListVariable(d, 0, d.prompt, 'dropbox'));
+    }
+  }
+
+  private setCheckboxes(checkboxes: DropdownData<boolean>[]) {
+    if (typeof checkboxes === 'undefined') return;
+
+    for (let c of checkboxes) {
+      this.checkboxes.push(new ListVariable(c, 0, c.prompt, 'checkbox'));
     }
   }
 }
