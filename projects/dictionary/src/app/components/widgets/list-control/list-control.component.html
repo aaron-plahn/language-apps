@@ -9,7 +9,7 @@
   <div *ngIf="isCheckbox()">
     <app-switch
       [checkboxData]="_listVariable.data"
-      (onItemSelection)="handleNewSelection($event)"
+      (onChange)="handleNewSelection($event)"
     ></app-switch>
   </div>
 </div>

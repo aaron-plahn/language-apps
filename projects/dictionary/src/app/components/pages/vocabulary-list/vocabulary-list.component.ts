@@ -40,6 +40,8 @@ export class VocabularyListComponent implements OnInit {
         this.entries = entries;
       });
 
+    this.selectedTermId = '1';
+
     this.dictionaryData.getVocabularyListByID('1').subscribe((list: any) => {
       this.vocabularyList = list;
       this.setDropboxes(list.variables.dropboxes);

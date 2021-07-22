@@ -1,6 +1,12 @@
-<!-- <app-term [termId]="4"></app-term> -->
-<!-- TODO add term component at top to bind to selected term -->
-<div *ngIf="selectedEntry">selectedEntry is defined</div>
+<!-- TODO bind to an app-term instead -->
+<div *ngIf="selectedEntry?.term">
+  <p>term: {{ selectedEntry.term.term }}</p>
+  <p>
+    term (English):
+    {{ selectedEntry.term.termEnglish }}}
+  </p>
+  <p>contributor: {{ contributor }}</p>
+</div>
 <div *ngIf="!selectedEntry">No results found.</div>
 
 <div *ngIf="dropboxes">
