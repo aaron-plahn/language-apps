@@ -13,9 +13,9 @@ export class CreditsComponent implements OnInit {
   constructor( private alphabet: AlphabetService ) { }
 
   ngOnInit(): void {
-    this.alphabet.getAlphabetCredits().subscribe((data: any)=>{
+    this.alphabet.getAlphabetCredits().subscribe((data: any) => {
       this.contributors = data.contributors;
-    })
+    });
   }
 
 }

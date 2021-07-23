@@ -17,20 +17,20 @@ export class DetailComponent implements OnInit {
 
   alphabetSize: number;
   tileNumber: number;
-  private _active: boolean = false; // deactivate arrow clicks initially
+  private _active = false; // deactivate arrow clicks initially
 
-  constructor( private data: AlphabetService, private route:ActivatedRoute, private router: Router ) { }
+  constructor( private data: AlphabetService, private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
     this.data.getAlphabetSize()
     .pipe(
-      catchError((error:any) =>{
+      catchError((error: any) => {
         console.log(error.message);
         return of(-1);
       })
     )
-    .subscribe((data:number)=>{
-      if(data < 1){
+    .subscribe((data: number) => {
+      if (data < 1){
         this.handleDataLoadFailure();
       }
       this.alphabetSize = data;
@@ -38,33 +38,33 @@ export class DetailComponent implements OnInit {
     });
 
     this.route.params
-      .pipe(map(params=>params['id']))
-      .subscribe((id:string)=>{
-        if(!this.data.isValidID(id)) this.handleDataLoadFailure();
+      .pipe(map(params => params.id))
+      .subscribe((id: string) => {
+        if (!this.data.isValidID(id)) { this.handleDataLoadFailure(); }
         this.tileNumber = Number(id);
       });
   }
 
-  private cyclicIncrement(n:number,maxNumber:number){
+  private cyclicIncrement(n: number, maxNumber: number){
     return (n % maxNumber) + 1;
   }
 
-  private cyclicDecrement(n:number,maxNumber:number){
-    let startingIndex: number = 1;
+  private cyclicDecrement(n: number, maxNumber: number){
+    const startingIndex = 1;
     n--;
-    if(n === startingIndex - 1) return maxNumber;
-    if(n < startingIndex || n > maxNumber) throw new Error(`Index out of bounds: ${n}`);
+    if (n === startingIndex - 1) { return maxNumber; }
+    if (n < startingIndex || n > maxNumber) { throw new Error(`Index out of bounds: ${n}`); }
     return n;
   }
 
   handleLeftArrowClick(){
-    if(!this._active) return;
-    this.tileNumber = this.cyclicDecrement(this.tileNumber,this.alphabetSize);
+    if (!this._active) { return; }
+    this.tileNumber = this.cyclicDecrement(this.tileNumber, this.alphabetSize);
   }
 
   handleRightArrowClick(){
-    if(!this._active) return;
-    this.tileNumber = this.cyclicIncrement(this.tileNumber,this.alphabetSize);
+    if (!this._active) { return; }
+    this.tileNumber = this.cyclicIncrement(this.tileNumber, this.alphabetSize);
   }
 
   navigateToIndex(){
@@ -72,15 +72,15 @@ export class DetailComponent implements OnInit {
   }
 
   handleCardClick(eventData: TileClickEventData){
-    let region: CardRegion = eventData.region;
-    let cardNumber: number = eventData.cardNumber;
-    if(region === "LETTER") this.handleLetterClick(cardNumber);
-    if(region === "WORD") this.handleWordClick(cardNumber);
-    if(region === "IMAGE") this.handleImageClick(cardNumber);
+    const region: CardRegion = eventData.region;
+    const cardNumber: number = eventData.cardNumber;
+    if (region === 'LETTER') { this.handleLetterClick(cardNumber); }
+    if (region === 'WORD') { this.handleWordClick(cardNumber); }
+    if (region === 'IMAGE') { this.handleImageClick(cardNumber); }
   }
 
   handleDataLoadFailure(){
-    console.error(`Alphabet data or tile failed to load in detail page.`)
+    console.error(`Alphabet data or tile failed to load in detail page.`);
     this.navigateToIndex();
   }
 

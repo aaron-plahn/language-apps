@@ -9,9 +9,9 @@ import { DropdownItem } from '../../widgets/dropdown/dropdown-item';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  initialIndex: number = 1;
+  initialIndex = 1;
 
-  selectedFood: string = '';
+  selectedFood = '';
 
   dropdownData: DropdownData<string> = {
     prompt: 'favourite food: ',

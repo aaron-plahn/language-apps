@@ -3,12 +3,12 @@ import { MemoryCard } from '../types/memory-card';
 export class CardWithState{
     private _card: MemoryCard;
 
-    get card() : MemoryCard{
+    get card(): MemoryCard{
         return this._card;
     }
 
     private _state: CardState;
-    
+
     get state(): CardState{
         return this._state;
     }
@@ -18,14 +18,14 @@ export class CardWithState{
     }
 
     private _active: boolean;
-    
+
     get active(): boolean{
         return this._active;
     }
 
     set active(a: boolean){
-        if(a) console.log(`Setting card as active`);
-        if(!a) console.log(` setting card as inactive`)
+        if (a) { console.log(`Setting card as active`); }
+        if (!a) { console.log(` setting card as inactive`); }
         this._active = a;
     }
 

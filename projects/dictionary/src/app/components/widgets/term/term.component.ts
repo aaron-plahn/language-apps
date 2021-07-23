@@ -14,7 +14,7 @@ export class TermComponent implements OnInit {
   _id: string;
   @Input() public set termID(id: string) {
     console.log(`Getting term ${id}`);
-    if (!id && !(id === '0')) throw new Error(`termID is undefined`);
+    if (!id && !(id === '0')) { throw new Error(`termID is undefined`); }
     this._id = id;
     console.log(`_id: ${this._id}`);
   }
@@ -30,7 +30,7 @@ export class TermComponent implements OnInit {
   }
 
   playAudio() {
-    let url: string = this.term.audioURL;
+    const url: string = this.term.audioURL;
     this.audio.playAudioFromURL(this.term.audioURL);
   }
 }

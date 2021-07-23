@@ -58,12 +58,13 @@ export class VocabularyListComponent implements OnInit {
     q = {
       parameters: [],
     };
-    if (!(this.dropboxes?.length || this.checkboxes?.length))
+    if (!(this.dropboxes?.length || this.checkboxes?.length)) {
       throw new Error(
         `Cannot create search query when both dropboxes and checkboxes are undefined.`
       );
+    }
     if (this.dropboxes?.length) {
-      for (let d of this.dropboxes) {
+      for (const d of this.dropboxes) {
         let queryParameter: Parameter<string>;
         queryParameter = {
           name: d.name,
@@ -73,7 +74,7 @@ export class VocabularyListComponent implements OnInit {
       }
     }
     if (this.checkboxes?.length) {
-      for (let c of this.checkboxes) {
+      for (const c of this.checkboxes) {
         let queryParameter: Parameter<boolean>;
         queryParameter = {
           name: c.name,
@@ -86,7 +87,7 @@ export class VocabularyListComponent implements OnInit {
   }
 
   search(q: ListQuery<any>) {
-    let result: VocabularyListEntry = this.dictionarySearch.findOneUniqueTerm(
+    const result: VocabularyListEntry = this.dictionarySearch.findOneUniqueTerm(
       q,
       this.entries
     );
@@ -99,16 +100,21 @@ export class VocabularyListComponent implements OnInit {
       return;
     }
 
-    for (let d of dropboxes) {
+    for (const d of dropboxes) {
       this.dropboxes.push(new ListVariable(d, 0, d.prompt, 'dropbox'));
     }
   }
 
   private setCheckboxes(checkboxes: DropdownData<boolean>[]) {
-    if (typeof checkboxes === 'undefined') return;
+    if (typeof checkboxes === 'undefined') { return; }
 
-    for (let c of checkboxes) {
+    for (const c of checkboxes) {
       this.checkboxes.push(new ListVariable(c, 0, c.prompt, 'checkbox'));
     }
+  }
+
+  playAudio() {
+    const url: string = this.selectedEntry.term.audioURL;
+    if (url) { this.audio.playAudioFromURL(url); }
   }
 }

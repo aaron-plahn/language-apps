@@ -1,4 +1,4 @@
 export type Parameter<T> = {
-    "name": string,
+    'name': string,
     value: T
-}
+};

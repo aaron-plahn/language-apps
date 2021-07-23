@@ -15,8 +15,9 @@ export class SwitchComponent implements OnInit {
 
   _data: DropdownData<boolean>;
   @Input() public set checkboxData(data: DropdownData<boolean>) {
-    if (!this.isValidCheckboxData(data))
+    if (!this.isValidCheckboxData(data)) {
       throw new Error(`Invalid checkbox data.`);
+    }
     this._data = data;
   }
 
@@ -39,18 +40,18 @@ export class SwitchComponent implements OnInit {
     return !b;
   }
   private getItemFromBoolean(b: boolean) {
-    let items: DropdownItem<boolean>[] = this._data.items;
-    for (let i of items) {
-      if (i.value === b) return i;
+    const items: DropdownItem<boolean>[] = this._data.items;
+    for (const i of items) {
+      if (i.value === b) { return i; }
     }
     throw new Error(`No checkbox data found for ${b}`);
   }
 
   private isValidCheckboxData(d: DropdownData<boolean>) {
-    if (!(d.items.length === 2)) return false; // 1 display, value pair for true, 1 for false
-    let zerothValue: boolean = d.items[0].value;
-    let firstValue: boolean = d.items[1].value;
-    if (zerothValue === firstValue) return false; // both true or both false, not acceptable
+    if (!(d.items.length === 2)) { return false; } // 1 display, value pair for true, 1 for false
+    const zerothValue: boolean = d.items[0].value;
+    const firstValue: boolean = d.items[1].value;
+    if (zerothValue === firstValue) { return false; } // both true or both false, not acceptable
     return true;
   }
 

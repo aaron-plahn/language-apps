@@ -8,4 +8,4 @@ export type MemoryRound = {
     'contributor': string,
     'cardbackImageURL': string,
     'cards': MemoryCard[]
-}
+};

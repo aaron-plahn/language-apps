@@ -16,7 +16,7 @@ export class SongIndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.media.getAllKidsSongs()
-    .subscribe((mediaList: MediaList)=>{
+    .subscribe((mediaList: MediaList) => {
       this.mediaList = mediaList;
       console.log(mediaList.items);
     });

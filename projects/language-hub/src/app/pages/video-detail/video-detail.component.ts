@@ -19,29 +19,29 @@ export class VideoDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
-      switchMap((params: ParamMap)=>{
+      switchMap((params: ParamMap) => {
         return this.media.getMediaItemByID(params.get('id'));
       })
     )
     .pipe(
-      catchError((error:any) =>{
+      catchError((error: any) => {
         console.log(error.message);
         return of([]);
       })
     )
-    .subscribe((mediaItem: MediaItem)=>{
+    .subscribe((mediaItem: MediaItem) => {
       console.log('handling');
       console.log(mediaItem);
-      if(!mediaItem.id) this.navigateToIndex();
-      let song: MediaItem = mediaItem;
+      if (!mediaItem.id) { this.navigateToIndex(); }
+      const song: MediaItem = mediaItem;
       // TODO move this logic into MediaCollectionsService or server
-      song.mediaURL = "https://api.tsilhqotinlanguage.ca" + song.mediaURL;
+      song.mediaURL = 'https://api.tsilhqotinlanguage.ca' + song.mediaURL;
       this.video = mediaItem;
-    })
+    });
   }
 
   private navigateToIndex(){
-    this.router.navigateByUrl('/songs')
+    this.router.navigateByUrl('/songs');
   }
 
 }

@@ -13,18 +13,11 @@ import { AudioService } from 'audio';
   styleUrls: ['./tile.component.css']
 })
 export class TileComponent implements OnInit {
-  letterRegion = CardRegion.LETTER;
-  wordRegion = CardRegion.WORD;
-  imageRegion = CardRegion.IMAGE;
-  card: Card;
-  _tileNumber: number;
-  _active: boolean = true; // card must be explicitly inactivated using Input property active
-  private _ready: boolean = false;
   @Input() public set num(id: string){
-    let n: number = Number(id);
+    const n: number = Number(id);
 
     // tile state is controlled from outside solely by num property
-    if(!this._active) return;
+    if (!this._active) { return; }
 
     this._tileNumber = n;
     this.updateCard(this._tileNumber); // update card state for new num
@@ -34,57 +27,64 @@ export class TileComponent implements OnInit {
     this._active = activeState;
   }
 
+  constructor( private data: AlphabetService, private audio: AudioService ) { }
+  letterRegion = CardRegion.LETTER;
+  wordRegion = CardRegion.WORD;
+  imageRegion = CardRegion.IMAGE;
+  card: Card;
+  _tileNumber: number;
+  _active = true; // card must be explicitly inactivated using Input property active
+  private _ready = false;
+
   @Output() public cardNotFound = new EventEmitter<string>();
-  emitCardNotFound(cardID: string){
-    console.log(`Card not found!`)
-    this.cardNotFound.emit(`Card not found: ${cardID}`);
-  }
 
   @Output() public cardClicked = new EventEmitter<TileClickEventData>();
+  emitCardNotFound(cardID: string){
+    console.log(`Card not found!`);
+    this.cardNotFound.emit(`Card not found: ${cardID}`);
+  }
   handleClick(region: CardRegion){
-    let data: TileClickEventData = {
-      "region": region,
-      "cardNumber": this._tileNumber
-    }
+    const data: TileClickEventData = {
+      region,
+      cardNumber: this._tileNumber
+    };
     this.cardClicked.emit(data);
-    if(!this._active) return; // do not play audio if tile is inactive
+    if (!this._active) { return; } // do not play audio if tile is inactive
     this.playAudioForRegion(data.region);
   }
-
-  constructor( private data: AlphabetService, private audio: AudioService ) { }
 
   ngOnInit(): void {
       this.updateCard(this._tileNumber);
   }
-    
+
   updateCard(newTileNumber: number){
     newTileNumber = Number(newTileNumber); // convert string to number
-    if(newTileNumber < 0 || !Number.isInteger(newTileNumber)) throw new Error(`Tile number ${newTileNumber} is not a positive integer.`);
+    if (newTileNumber < 0 || !Number.isInteger(newTileNumber)) { throw new Error(`Tile number ${newTileNumber} is not a positive integer.`); }
     this._tileNumber = newTileNumber;
     this.data.getCardBySequenceNumber(this._tileNumber)
     .pipe(
-      catchError((error:any) =>{
+      catchError((error: any) => {
         console.log(error.message);
         console.log(`Failed to load card ${this._tileNumber}.`);
         this.handleCardNotFound(String(this._tileNumber));
         return of([]);
       })
     )
-    .subscribe((data:Card)=>{
-      if(!data) this.handleCardNotFound(String(this._tileNumber));
+    .subscribe((data: Card) => {
+      if (!data) { this.handleCardNotFound(String(this._tileNumber)); }
       console.log(`Found a valid card: ${data}`);
       this.card = data;
     });
   }
 
   private playAudioForRegion(region: CardRegion){
-    let audioURL: string = this.getAudioURLForRegion(region);
+    const audioURL: string = this.getAudioURLForRegion(region);
     this.audio.playAudioFromURL(audioURL);
   }
 
   private getAudioURLForRegion(region: CardRegion){
-    if(region === CardRegion.IMAGE || region === CardRegion.WORD) return this.card.word.audioURL;
-    if(region === CardRegion.LETTER) return this.card.letter.audioURL;
+    if (region === CardRegion.IMAGE || region === CardRegion.WORD) { return this.card.word.audioURL; }
+    if (region === CardRegion.LETTER) { return this.card.letter.audioURL; }
   }
 
   private handleCardNotFound(cardID: string){

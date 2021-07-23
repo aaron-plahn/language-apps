@@ -17,10 +17,10 @@ export class AppDescriptionsComponent implements OnInit {
       image:
         'https://api.tsilhqotinlanguage.ca/uploads/app_icon_dvb_483177a8a0.png',
       description:
-        "Version 1.0 is currently published and contains 'Third Person Singular Paradigms' completed Bella Alphonse. These are really helpful for semi-speakers who need practice with verb stem alternations. To date over 100,000 phrases have been recorded, with about 50,000 named and organized. Version 2.0 of this app will allow us to present this material to learners. This is the main focus of the tech team for 2021-2022.",
+        'Version 1.0 is currently published and contains \'Third Person Singular Paradigms\' completed Bella Alphonse. These are really helpful for semi-speakers who need practice with verb stem alternations. To date over 100,000 phrases have been recorded, with about 50,000 named and organized. Version 2.0 of this app will allow us to present this material to learners. This is the main focus of the tech team for 2021-2022.',
     },
     {
-      title: "Tŝilhqot'in Memory Match",
+      title: 'Tŝilhqot\'in Memory Match',
       links: {
         google:
           'https://play.google.com/store/apps/details?id=ca.tsilhqotinlanguage.memorymatch&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1',
@@ -32,7 +32,7 @@ export class AppDescriptionsComponent implements OnInit {
         'The Memory Match game is one of Bella’s favourite activities to bring to the schools. That inspired this digital app where you can build your vocabulary as you look for matches.  The current version features Bella Alphonse’s original 6 rounds (also found on the web version) and an additional 6 rounds completed by Maria Myers. Aaron picked a collection of pictures for Maria to describe that included many common or interesting verbs.    We hope more speakers will contribute additional rounds in the future. This app is a favourite among Tŝilhqot’in children.',
     },
     {
-      title: "Tŝilhqot'in Alphabet",
+      title: 'Tŝilhqot\'in Alphabet',
       links: {
         google:
           'https://play.google.com/store/apps/details?id=ca.tsilhqotinlanguage.tsilhqotinalphabet&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1',

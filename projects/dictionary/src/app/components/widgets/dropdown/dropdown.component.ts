@@ -12,20 +12,20 @@ export class DropdownComponent<T> implements OnInit {
     this._data = data;
   }
 
+  constructor() {}
+
   private initialIndex = 0;
 
   @Output() public onItemSelection = new EventEmitter<DropdownItem<T>>();
-  emitSelection(selectedIndex: number) {
-    let selectedItem: DropdownItem<T> = this._data.items[selectedIndex];
-
-    this.onItemSelection.emit(selectedItem);
-  }
 
   _data: DropdownData<T>;
 
   selectedIndex: number;
+  emitSelection(selectedIndex: number) {
+    const selectedItem: DropdownItem<T> = this._data.items[selectedIndex];
 
-  constructor() {}
+    this.onItemSelection.emit(selectedItem);
+  }
 
   ngOnInit(): void {}
 

@@ -1,5 +1,5 @@
 export enum CardRegion{
-    LETTER = "LETTER",
-    WORD = "WORD",
-    IMAGE = "IMAGE"
+    LETTER = 'LETTER',
+    WORD = 'WORD',
+    IMAGE = 'IMAGE'
   }

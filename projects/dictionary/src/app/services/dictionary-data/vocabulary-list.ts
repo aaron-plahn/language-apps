@@ -1,14 +1,14 @@
 import { DropdownData } from '../../components/widgets/dropdown/dropdown-data';
-import { Variable } from './variable';
+import { RawVariable } from './variable';
 
 // TODO deal with inhomogeneous types for variables
-export type VocabularyList<T> = {
+export type RawVocabularyList<T> = {
   id: string;
   name?: string;
   name_english?: string;
   credits: object;
   comments: string;
-  variables: Variable<T>[];
+  variables: RawVariable<T>[];
 };
 
 export type ParsedVariables = {
@@ -16,7 +16,7 @@ export type ParsedVariables = {
   checkboxes: DropdownData<boolean>[];
 };
 
-export type ParsedVocabularyList<T> = Omit<VocabularyList<any>, 'variables'> & {
+export type VocabularyList<T> = Omit<RawVocabularyList<any>, 'variables'> & {
   variables: ParsedVariables;
 };
 

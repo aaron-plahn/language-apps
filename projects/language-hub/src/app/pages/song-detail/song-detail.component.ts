@@ -18,28 +18,28 @@ export class SongDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.pipe(
-      switchMap((params: ParamMap)=>{
+      switchMap((params: ParamMap) => {
         return this.media.getMediaItemByID(params.get('id'));
       })
     )
     .pipe(
-      catchError((error:any) =>{
+      catchError((error: any) => {
         console.log(error.message);
         return of([]);
       })
     )
-    .subscribe((mediaItem: MediaItem)=>{
+    .subscribe((mediaItem: MediaItem) => {
       console.log('handling');
       console.log(mediaItem);
-      if(!mediaItem.id) this.navigateToIndex();
-      let song: MediaItem = mediaItem;
-      song.mediaURL = "https://api.tsilhqotinlanguage.ca" + song.mediaURL;
+      if (!mediaItem.id) { this.navigateToIndex(); }
+      const song: MediaItem = mediaItem;
+      song.mediaURL = 'https://api.tsilhqotinlanguage.ca' + song.mediaURL;
       this.song = mediaItem;
-    })
+    });
   }
 
   private navigateToIndex(){
-    this.router.navigateByUrl('/songs')
+    this.router.navigateByUrl('/songs');
   }
 
 }

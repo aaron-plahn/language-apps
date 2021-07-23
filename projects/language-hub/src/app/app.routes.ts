@@ -14,16 +14,16 @@ import { VideoIndexComponent } from './pages/video-index/video-index.component';
 
 // TODO comment components back in as migrated
 export const routes: Routes = [
-    {"path": "", "component": HomeComponent},
-    {"path": "radio", "component": RadioComponent},
-    {"path": "dialect", "component": DialectComponent},
-    {"path": "songs/:id", "component": SongDetailComponent},
-    {"path": "songs", "component": SongIndexComponent},
-    {"path": "videos/:id", "component": VideoDetailComponent},
-    {"path": "videos", "component": VideoIndexComponent},
-    {"path": "apps", "component": AppDescriptionsComponent},
-    {"path": "links", "component": LinksComponent},
-    {"path": "teachers", "component": TeachersComponent},
-    {"path": "funders", "component": FundersComponent},
-    {"path": "contact", "component": ContactComponent}
+    {path: '', component: HomeComponent},
+    {path: 'radio', component: RadioComponent},
+    {path: 'dialect', component: DialectComponent},
+    {path: 'songs/:id', component: SongDetailComponent},
+    {path: 'songs', component: SongIndexComponent},
+    {path: 'videos/:id', component: VideoDetailComponent},
+    {path: 'videos', component: VideoIndexComponent},
+    {path: 'apps', component: AppDescriptionsComponent},
+    {path: 'links', component: LinksComponent},
+    {path: 'teachers', component: TeachersComponent},
+    {path: 'funders', component: FundersComponent},
+    {path: 'contact', component: ContactComponent}
   ];

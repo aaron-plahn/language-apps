@@ -10,17 +10,19 @@ import { Term } from './term';
 import { VocabularyListEntry } from './term-with-values';
 import {
   ParsedVariables,
-  ParsedVocabularyList,
+  VocabularyList,
   VocabularyListSummary,
 } from './vocabulary-list';
 
 export function parseCheckbox(variable): DropdownData<boolean> {
-  if (!variable.validValues)
+  if (!variable.validValues) {
     throw new Error(`Unable to parse dropbox: items undefined.`);
+  }
 
-  if (!variable.validValues.every(({ value }) => typeof value === 'boolean'))
+  if (!variable.validValues.every(({ value }) => typeof value === 'boolean')) {
     throw new Error('Encountered non-boolean variables for checkbox');
-  let output: DropdownData<boolean> = {
+  }
+  const output: DropdownData<boolean> = {
     prompt: variable.name,
     items: variable.validValues,
   };
@@ -29,9 +31,10 @@ export function parseCheckbox(variable): DropdownData<boolean> {
 }
 
 export function parseDropbox(variable): DropdownData<string> {
-  if (!variable.validValues)
+  if (!variable.validValues) {
     throw new Error(`Unable to parse dropbox: items undefined.`);
-  let output: DropdownData<string> = {
+  }
+  const output: DropdownData<string> = {
     prompt: variable.name,
     items: variable.validValues,
   };
@@ -51,44 +54,45 @@ export function parseCheckboxItem(item) {
 export function parseVocabularyListForVariables(
   vocabularyList
 ): ParsedVariables {
-  let apiVariables = vocabularyList.variables;
-  if (!apiVariables) throw new Error(`Variables undefined on vocabulary list.`);
-  let parsedVariables: ParsedVariables = {
+  const apiVariables = vocabularyList.variables;
+  if (!apiVariables) { throw new Error(`Variables undefined on vocabulary list.`); }
+  const parsedVariables: ParsedVariables = {
     checkboxes: [],
     dropboxes: [],
   };
 
-  for (let variable of apiVariables) {
-    if (!variable.type)
+  for (const variable of apiVariables) {
+    if (!variable.type) {
       throw new Error(`Encountered variable of unknown type.`);
+    }
 
     if (variable.type === 'dropbox') {
-      let dropbox = parseDropbox(variable);
-      if (!dropbox) throw new Error(`Failed to parse dropbox.`);
+      const dropbox = parseDropbox(variable);
+      if (!dropbox) { throw new Error(`Failed to parse dropbox.`); }
       parsedVariables.dropboxes.push(dropbox);
     }
-    if (variable.type === 'checkbox')
+    if (variable.type === 'checkbox') {
       parsedVariables.checkboxes.push(parseCheckbox(variable));
+    }
   }
   return parsedVariables;
 }
 
-export function vocabularyListAdapter(
-  apiVocabularyList
-): ParsedVocabularyList<any> {
-  let variables = parseVocabularyListForVariables(apiVocabularyList);
-  if (!variables) throw new Error(`failed to parse variables`);
-  if (!apiVocabularyList['name'] && !apiVocabularyList['name_english'])
+export function vocabularyListAdapter(apiVocabularyList): VocabularyList<any> {
+  const variables = parseVocabularyListForVariables(apiVocabularyList);
+  if (!variables) { throw new Error(`failed to parse variables`); }
+  if (!apiVocabularyList.name && !apiVocabularyList.name_english) {
     throw new Error(`failed to parse unnamed vocabulary list.`);
+  }
   return {
-    name: returnValueOrNullIfUndefined(apiVocabularyList['name']),
+    name: returnValueOrNullIfUndefined(apiVocabularyList.name),
     name_english: returnValueOrNullIfUndefined(
-      apiVocabularyList['name_english']
+      apiVocabularyList.name_english
     ),
-    id: throwErrorIfUndefined(apiVocabularyList['id']),
+    id: throwErrorIfUndefined(apiVocabularyList.id),
     variables: variables || { dropboxes: [], checkboxes: [] },
-    credits: returnValueOrNullIfUndefined(apiVocabularyList['credits']),
-    comments: returnValueOrNullIfUndefined(apiVocabularyList['comments']),
+    credits: returnValueOrNullIfUndefined(apiVocabularyList.credits),
+    comments: returnValueOrNullIfUndefined(apiVocabularyList.comments),
   };
 }
 
@@ -96,7 +100,7 @@ export function vocabularyListAdapter(
   providedIn: 'root',
 })
 export class DictionaryDataService implements DictionaryDataAPI {
-  private baseAPIURL: string = 'https://api.tsilhqotinlanguage.ca';
+  private baseAPIURL = 'https://api.tsilhqotinlanguage.ca';
 
   private endpoints: object = {
     listTerms: `${this.baseAPIURL}/list-terms/?vocabulary_list=`,
@@ -107,12 +111,12 @@ export class DictionaryDataService implements DictionaryDataAPI {
   constructor(private http: HttpClient) {}
 
   getTermsForListByListID(id: string): Observable<VocabularyListEntry[]> {
-    let endpoint: string = `${this.endpoints['listTerms']}${id}`;
+    const endpoint = `${this.endpoints.listTerms}${id}`;
     return this.http.get(endpoint).pipe(
       map((data: any) => {
-        let terms: VocabularyListEntry[] = [];
-        for (let datum of data) {
-          let currentTerm: VocabularyListEntry = {
+        const terms: VocabularyListEntry[] = [];
+        for (const datum of data) {
+          const currentTerm: VocabularyListEntry = {
             term: {
               id: datum.term.id,
               term: datum.term.term,
@@ -131,30 +135,31 @@ export class DictionaryDataService implements DictionaryDataAPI {
   }
 
   getAllVocabularyListSummaries(): Observable<VocabularyListSummary[]> {
-    let endpoint: string = this.endpoints['vocabularyLists'];
+    const endpoint: string = this.endpoints.vocabularyLists;
     return this.http.get(endpoint).pipe(
       map((data) => {
-        if (Array.isArray(data) && data.length > 0)
+        if (Array.isArray(data) && data.length > 0) {
           return data
             .map(this.vocabularyListSummaryAdapter)
             .filter((list) => list?.id);
+        }
         return [];
       })
     );
   }
 
-  getVocabularyListByID(id: string): Observable<ParsedVocabularyList<any>> {
-    let endpoint: string = `${this.endpoints['vocabularyLists']}${id}`;
+  getVocabularyListByID(id: string): Observable<VocabularyList<any>> {
+    const endpoint = `${this.endpoints.vocabularyLists}${id}`;
     return this.http.get(endpoint).pipe(map(vocabularyListAdapter));
   }
 
   getAllTerms(): Observable<Term[]> {
-    let endpoint: string = this.endpoints['terms'];
+    const endpoint: string = this.endpoints.terms;
     return this.http.get(endpoint).pipe(
       map((data: any) => {
-        let adaptedTerms: Term[] = [];
-        for (let datum of data) {
-          let adaptedTerm = this.termAdapter(datum);
+        const adaptedTerms: Term[] = [];
+        for (const datum of data) {
+          const adaptedTerm = this.termAdapter(datum);
           adaptedTerms.push(adaptedTerm);
         }
         return adaptedTerms;
@@ -163,7 +168,7 @@ export class DictionaryDataService implements DictionaryDataAPI {
   }
 
   getTermByID(id: string): Observable<Term> {
-    let endpoint: string = `${this.endpoints['terms']}${id}`;
+    const endpoint = `${this.endpoints.terms}${id}`;
     return this.http.get(endpoint).pipe(
       map((data) => {
         return this.termAdapter(data);
@@ -192,7 +197,7 @@ export class DictionaryDataService implements DictionaryDataAPI {
   ): VocabularyListSummary {
     const { name, name_english, id, credits } = apiVocabularyList;
 
-    if (!id || (!name && !name_english)) return undefined;
+    if (!id || (!name && !name_english)) { return undefined; }
 
     return {
       name: returnValueOrNullIfUndefined(name),

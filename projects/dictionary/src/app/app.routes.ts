@@ -6,9 +6,9 @@ import { VocabularyListComponent } from './components/pages/vocabulary-list/voca
 import { VocabularyListsComponent } from './components/pages/vocabulary-lists/vocabulary-lists.component';
 
 export const routes: Routes = [
-    { "path":"", "component": HomeComponent },
-    { "path":"lists/:id", "component": VocabularyListComponent },
-    { "path":"lists", "component": VocabularyListsComponent },
-    { "path": "terms/:id", "component": TermDetailComponent },
-    { "path": "terms", "component": TermsComponent }
+    { path: '', component: HomeComponent },
+    { path: 'lists/:id', component: VocabularyListComponent },
+    { path: 'lists', component: VocabularyListsComponent },
+    { path: 'terms/:id', component: TermDetailComponent },
+    { path: 'terms', component: TermsComponent }
 ];

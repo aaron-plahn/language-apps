@@ -15,8 +15,8 @@ export class TermDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params
-    .pipe(map(params=>params['id']))
-    .subscribe((id:string)=>{
+    .pipe(map(params => params.id))
+    .subscribe((id: string) => {
       this.id = id;
     });
   }

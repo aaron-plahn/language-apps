@@ -14,10 +14,10 @@ export class MenuComponent implements OnInit {
   constructor( private memoryMatchService: MemoryMatchService ) { }
 
   ngOnInit(): void {
-    this.memoryMatchService.getAllRounds().subscribe((data: MemoryRound[])=>{
-      console.log(data)
+    this.memoryMatchService.getAllRounds().subscribe((data: MemoryRound[]) => {
+      console.log(data);
       this.rounds = data;
-    })
+    });
   }
 
 }

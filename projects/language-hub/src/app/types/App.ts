@@ -1,12 +1,12 @@
 export type App = {
-    "image": string,
-    "links": AppLinks,
-    "title": string,
-    "description": string
-}
+    'image': string,
+    'links': AppLinks,
+    'title': string,
+    'description': string
+};
 
 type AppLinks = {
-    "google"?: string,
-    "iOS"?:string,
-    "web"?:string
-}
+    'google'?: string,
+    'iOS'?: string,
+    'web'?: string
+};

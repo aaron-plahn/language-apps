@@ -15,7 +15,7 @@ export class VideoIndexComponent implements OnInit {
 
   ngOnInit(): void {
     this.media.getAllWebVideos()
-    .subscribe((mediaList: MediaList)=>{
+    .subscribe((mediaList: MediaList) => {
       this.mediaList = mediaList;
       console.log(mediaList.items);
     });

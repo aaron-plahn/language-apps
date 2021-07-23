@@ -1,4 +1,4 @@
 export type AliasedValue<T> = {
-    "value": T,
-    "display": string
-}
+    'value': T,
+    'display': string
+};

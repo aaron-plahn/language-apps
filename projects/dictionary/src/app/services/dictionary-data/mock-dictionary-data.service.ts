@@ -6,7 +6,7 @@ import { DictionaryDataAPI } from './IDictionaryDataAPI';
 import { Term } from './term';
 import { VocabularyListEntry } from './term-with-values';
 import {
-  ParsedVocabularyList,
+  RawVocabularyList,
   VocabularyList,
   VocabularyListSummary,
 } from './vocabulary-list';
@@ -100,7 +100,7 @@ const unitDropbox = {
 })
 // @ts-ignore experimental support for decorators
 export class MockDictionaryDataService implements DictionaryDataAPI {
-  private baseAPIURL: string = 'https://api.tsilhqotinlanguage.ca';
+  private baseAPIURL = 'https://api.tsilhqotinlanguage.ca';
 
   constructor() {}
 
@@ -228,7 +228,7 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
     },
   ];
 
-  private mockVocabularyLists: VocabularyList<any>[] = [
+  private mockVocabularyLists: RawVocabularyList<any>[] = [
     {
       id: '1',
       name: wrapMockVocabularyListStrings('Test Vocabulary List 1: Paradigm'),
@@ -345,8 +345,8 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
   ];
 
   mockTermsForLists: Record<string, VocabularyListEntry[]> = {
-    '1': this.mockTermsInList1,
-    '2': this.mockTermsInList2,
+    1: this.mockTermsInList1,
+    2: this.mockTermsInList2,
   };
 
   getTermsForListByListID(id: string): Observable<VocabularyListEntry[]> {
@@ -366,7 +366,7 @@ export class MockDictionaryDataService implements DictionaryDataAPI {
     );
   }
 
-  getVocabularyListByID(id: string): Observable<ParsedVocabularyList<any>> {
+  getVocabularyListByID(id: string): Observable<VocabularyList<any>> {
     return of(this.mockVocabularyLists.find((vl) => vl.id === id)).pipe(
       map(vocabularyListAdapter)
     );
