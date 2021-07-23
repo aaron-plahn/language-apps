@@ -1,0 +1,22 @@
+<table class="mat-elevation-z8">
+  <thead>
+    <tr>
+      <ng-container>
+        <td>Term</td>
+      </ng-container>
+      <ng-container>
+        <td>English</td>
+      </ng-container>
+      <ng-container>
+        <td>Contributor</td>
+      </ng-container>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let term of _terms">
+      <td>{{ term.term }}</td>
+      <td>{{ term.termEnglish }}</td>
+      <td>{{ term.contributor }}</td>
+    </tr>
+  </tbody>
+</table>

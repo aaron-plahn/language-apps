@@ -16,9 +16,6 @@
   </li>
 </ol>
 
-<!-- component starts here-->
 <div *ngIf="terms">
-  <div *ngFor="let term of terms">
-    {{ term.term }} | {{ term.termEnglish }} | {{ term.contributor }}
-  </div>
+  <app-table [terms]="terms"></app-table>
 </div>
