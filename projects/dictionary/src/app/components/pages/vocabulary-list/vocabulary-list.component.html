@@ -1,6 +1,8 @@
 <!-- TODO bind to an app-term instead -->
+
 <div *ngIf="selectedEntry?.term">
-  <p>term: {{ selectedEntry.term.term }}</p>
+  <app-term [termId]="selectedEntry.term.termId
+  <!-- <p>term: {{ selectedEntry.term.term }}</p>
   <p>
     term (English):
     {{ selectedEntry.term.termEnglish }}}
@@ -11,7 +13,7 @@
     id="play-icon"
     src="https://api.tsilhqotinlanguage.ca/uploads/audio_play_button_pixabay_f799959630.png"
     (click)="playAudio()"
-  />
+  /> -->
 </div>
 <div *ngIf="!selectedEntry">No results found.</div>
 

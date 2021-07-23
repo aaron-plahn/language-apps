@@ -55,7 +55,9 @@ export function parseVocabularyListForVariables(
   vocabularyList
 ): ParsedVariables {
   const apiVariables = vocabularyList.variables;
-  if (!apiVariables) { throw new Error(`Variables undefined on vocabulary list.`); }
+  if (!apiVariables) {
+    throw new Error(`Variables undefined on vocabulary list.`);
+  }
   const parsedVariables: ParsedVariables = {
     checkboxes: [],
     dropboxes: [],
@@ -68,7 +70,9 @@ export function parseVocabularyListForVariables(
 
     if (variable.type === 'dropbox') {
       const dropbox = parseDropbox(variable);
-      if (!dropbox) { throw new Error(`Failed to parse dropbox.`); }
+      if (!dropbox) {
+        throw new Error(`Failed to parse dropbox.`);
+      }
       parsedVariables.dropboxes.push(dropbox);
     }
     if (variable.type === 'checkbox') {
@@ -80,15 +84,15 @@ export function parseVocabularyListForVariables(
 
 export function vocabularyListAdapter(apiVocabularyList): VocabularyList<any> {
   const variables = parseVocabularyListForVariables(apiVocabularyList);
-  if (!variables) { throw new Error(`failed to parse variables`); }
+  if (!variables) {
+    throw new Error(`failed to parse variables`);
+  }
   if (!apiVocabularyList.name && !apiVocabularyList.name_english) {
     throw new Error(`failed to parse unnamed vocabulary list.`);
   }
   return {
     name: returnValueOrNullIfUndefined(apiVocabularyList.name),
-    name_english: returnValueOrNullIfUndefined(
-      apiVocabularyList.name_english
-    ),
+    name_english: returnValueOrNullIfUndefined(apiVocabularyList.name_english),
     id: throwErrorIfUndefined(apiVocabularyList.id),
     variables: variables || { dropboxes: [], checkboxes: [] },
     credits: returnValueOrNullIfUndefined(apiVocabularyList.credits),
@@ -102,7 +106,7 @@ export function vocabularyListAdapter(apiVocabularyList): VocabularyList<any> {
 export class DictionaryDataService implements DictionaryDataAPI {
   private baseAPIURL = 'https://api.tsilhqotinlanguage.ca';
 
-  private endpoints: object = {
+  private endpoints = {
     listTerms: `${this.baseAPIURL}/list-terms/?vocabulary_list=`,
     vocabularyLists: `${this.baseAPIURL}/vocabulary-lists/`,
     terms: `${this.baseAPIURL}/terms/`,
@@ -197,7 +201,9 @@ export class DictionaryDataService implements DictionaryDataAPI {
   ): VocabularyListSummary {
     const { name, name_english, id, credits } = apiVocabularyList;
 
-    if (!id || (!name && !name_english)) { return undefined; }
+    if (!id || (!name && !name_english)) {
+      return undefined;
+    }
 
     return {
       name: returnValueOrNullIfUndefined(name),
