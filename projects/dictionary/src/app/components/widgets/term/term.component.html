@@ -1,15 +1,3 @@
-<div *ngIf="term?.term">
-  {{ term.term }}
+<div *ngIf="term">
+  <app-term-view [term]="term"></app-term-view>
 </div>
-<div *ngIf="term?.termEnglish">
-  {{ term.termEnglish }}
-</div>
-<div *ngIf="term?.audioURL">
-  <img
-    width="200"
-    id="play-icon"
-    src="https://api.tsilhqotinlanguage.ca/uploads/audio_play_button_pixabay_f799959630.png"
-    (click)="playAudio()"
-  />
-</div>
-<div *ngIf="term?.contributor">contributed by: {{ term.contributor }}</div>
