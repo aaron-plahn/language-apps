@@ -1,6 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DropdownData } from '../dropdown/dropdown-data';
-import { DropdownItem } from '../dropdown/dropdown-item';
+import { LabelAndValue } from '../dropdown/dropdown-item';
+
+export type NameAndValue<T> = {
+  name: string;
+  value: T;
+};
+
+type SwitchNameAndValue = NameAndValue<boolean>;
 
 @Component({
   selector: 'app-switch',
@@ -8,10 +15,7 @@ import { DropdownItem } from '../dropdown/dropdown-item';
   styleUrls: ['./switch.component.css'],
 })
 export class SwitchComponent implements OnInit {
-  _checked: boolean;
-  @Input() public set checked(c: boolean) {
-    this._checked = c;
-  }
+  _checked: boolean = false;
 
   _data: DropdownData<boolean>;
   @Input() public set checkboxData(data: DropdownData<boolean>) {
@@ -23,35 +27,52 @@ export class SwitchComponent implements OnInit {
 
   currentLabel: string;
 
-  @Output() public onChange = new EventEmitter<DropdownItem<boolean>>();
+  @Output() public onChange = new EventEmitter<SwitchNameAndValue>();
+  // TODO refactor this SRP
   emitState() {
-    const selectedItem: DropdownItem<boolean> = this.getItemFromBoolean(
+    const selectedItem: LabelAndValue<boolean> = this.getItemFromBoolean(
       this._checked
     );
     this.currentLabel = selectedItem.display || '';
-    this.onChange.emit(selectedItem);
+
+    const nameAndValue: SwitchNameAndValue = {
+      name: this._data.prompt,
+      value: selectedItem.value,
+    };
+
+    this.onChange.emit(nameAndValue);
   }
+
+  updateState() {}
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.emitState();
+  }
 
   private toggle(b: boolean) {
     return !b;
   }
   private getItemFromBoolean(b: boolean) {
-    const items: DropdownItem<boolean>[] = this._data.items;
+    const items: LabelAndValue<boolean>[] = this._data.items;
     for (const i of items) {
-      if (i.value === b) { return i; }
+      if (i.value === b) {
+        return i;
+      }
     }
     throw new Error(`No checkbox data found for ${b}`);
   }
 
   private isValidCheckboxData(d: DropdownData<boolean>) {
-    if (!(d.items.length === 2)) { return false; } // 1 display, value pair for true, 1 for false
+    if (!(d.items.length === 2)) {
+      return false;
+    } // 1 display, value pair for true, 1 for false
     const zerothValue: boolean = d.items[0].value;
     const firstValue: boolean = d.items[1].value;
-    if (zerothValue === firstValue) { return false; } // both true or both false, not acceptable
+    if (zerothValue === firstValue) {
+      return false;
+    } // both true or both false, not acceptable
     return true;
   }
 

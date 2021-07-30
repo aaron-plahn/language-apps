@@ -1,22 +1,27 @@
-import { DropdownData } from '../../widgets/dropdown/dropdown-data';
-import { DropdownItem } from '../../widgets/dropdown/dropdown-item';
+import { DropdownData } from '../dropdown/dropdown-data';
+import { LabelAndValue } from '../dropdown/dropdown-item';
+import { ControlType } from './ControlType';
 
 export class ListVariable<T> {
   name: string;
-  type: string;
+  type: ControlType;
   data: DropdownData<T>;
-  currentValue: DropdownItem<T>;
-  defaultValue: DropdownItem<T>;
+  currentValue: LabelAndValue<T>;
+  defaultValue: LabelAndValue<T>;
   constructor(
     dropdownData: DropdownData<T>,
     defaultIndex: number = 0,
     name: string,
-    type: string
+    type: ControlType
   ) {
-    if (!name?.length) { throw new Error(`Name must be non-empty string.`); }
+    if (!name?.length) {
+      throw new Error(`Name must be non-empty string.`);
+    }
     this.name = name;
 
-    if (type.length === 0) { throw new Error(`Type must be non-empty string.`); }
+    if (type.length === 0) {
+      throw new Error(`Type must be non-empty string.`);
+    }
     this.type = type;
 
     this.data = dropdownData;
@@ -31,18 +36,24 @@ export class ListVariable<T> {
   }
 
   isValidIndex(i: number) {
-    if (!this.data?.items) { return false; } // null, empty, undefined
+    if (!this.data?.items) {
+      return false;
+    } // null, empty, undefined
     const isValidIndex: boolean = 0 <= i && i < this.data.items.length;
     return isValidIndex; // i in range of items
   }
 
   setCurrentValueFromIndex(i: number) {
-    if (!this.isValidIndex(i)) { return false; }
+    if (!this.isValidIndex(i)) {
+      return false;
+    }
     this.currentValue = this.data.items[i];
   }
 
   setDefaultValueFromIndex(i: number) {
-    if (!this.isValidIndex(i)) { return false; }
+    if (!this.isValidIndex(i)) {
+      return false;
+    }
     this.defaultValue = this.data.items[i];
     return true;
   }

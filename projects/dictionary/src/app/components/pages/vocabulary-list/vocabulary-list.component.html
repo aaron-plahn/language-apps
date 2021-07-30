@@ -3,32 +3,10 @@
 </div>
 <div *ngIf="!selectedEntry">No results found.</div>
 
-<div *ngIf="dropboxes">
-  <div *ngFor="let dropbox of dropboxes">
-    <div *ngIf="dropbox.name">
-      {{ dropbox.name }}
-      dropbox found
-      <app-list-control
-        [listVariable]="dropbox"
-        (onChange)="handleNewSelection($event)"
-      ></app-list-control>
-    </div>
-
-    <div *ngIf="!dropbox.name">Unnamed dropbox.</div>
-  </div>
-</div>
-
-<div *ngIf="checkboxes">
-  <div *ngFor="let checkbox of checkboxes">
-    <div *ngIf="checkbox.name">
-      {{ checkbox.name }}
-      checkbox found
-      <app-list-control
-        [listVariable]="checkbox"
-        (onChange)="handleNewSelection($event)"
-      ></app-list-control>
-    </div>
-
-    <div *ngIf="!checkbox.name">Unnamed checkbox.</div>
-  </div>
+<div *ngIf="dropboxes || checkboxes">
+  <app-list-control-panel
+    [dropboxes]="dropboxes"
+    [checkboxes]="checkboxes"
+    (onItemSelection)="handleNewSelection($event)"
+  ></app-list-control-panel>
 </div>

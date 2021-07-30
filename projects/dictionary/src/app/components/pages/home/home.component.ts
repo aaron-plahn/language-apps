@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AudioService } from 'audio';
 import { DropdownData } from '../../widgets/dropdown/dropdown-data';
-import { DropdownItem } from '../../widgets/dropdown/dropdown-item';
+import { LabelAndValue } from '../../widgets/dropdown/dropdown-item';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleNewSelection(i: DropdownItem<string>) {
+  handleNewSelection(i: LabelAndValue<string>) {
     this.selectedFood = i.display;
   }
 }

@@ -1,6 +1,6 @@
-import { DropdownItem } from './dropdown-item';
+import { LabelAndValue } from './dropdown-item';
 
 export type DropdownData<T> = {
   prompt: string;
-  items: DropdownItem<T>[];
+  items: LabelAndValue<T>[];
 };

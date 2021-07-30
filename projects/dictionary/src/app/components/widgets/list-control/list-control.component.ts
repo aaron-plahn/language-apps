@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DropdownItem } from '../../../components/widgets/dropdown/dropdown-item';
-import { ListVariable } from '../../pages/vocabulary-list/list-variable';
+import { LabelAndValue } from '../../../components/widgets/dropdown/dropdown-item';
+import { ControlType, controlTypes } from './ControlType';
+import { ListVariable } from './list-variable';
 
 @Component({
   selector: 'app-list-control',
@@ -10,17 +11,16 @@ import { ListVariable } from '../../pages/vocabulary-list/list-variable';
 export class ListControlComponent<T> implements OnInit {
   _listVariable: ListVariable<T>;
 
-  controlType: 'checkbox' | 'dropbox';
+  controlType: ControlType;
 
   @Input() public set listVariable(v: ListVariable<T>) {
     this._listVariable = v;
 
-    this.controlType =
-      v.type === 'dropbox' || v.type === 'checkbox' ? v.type : undefined;
+    this.controlType = v.type;
   }
 
-  @Output() public onChange = new EventEmitter<DropdownItem<T>>();
-  handleNewSelection(eventData: DropdownItem<T>) {
+  @Output() public onChange = new EventEmitter<LabelAndValue<T>>();
+  handleNewSelection(eventData: LabelAndValue<T>) {
     this._listVariable.currentValue = eventData;
     this.onChange.emit(this._listVariable.currentValue);
   }
@@ -29,15 +29,15 @@ export class ListControlComponent<T> implements OnInit {
 
   ngOnInit(): void {}
 
-  getControlType(): 'checkbox' | 'dropbox' | undefined {
-    return this.controlType || undefined;
+  getControlType(): ControlType {
+    return this.controlType;
   }
 
   isCheckbox(): boolean {
-    return this.getControlType() === 'checkbox';
+    return this.getControlType() === controlTypes.checkbox;
   }
 
   isDropbox(): boolean {
-    return this.getControlType() === 'dropbox';
+    return this.getControlType() === controlTypes.dropbox;
   }
 }

@@ -18,6 +18,7 @@ import { TermComponent } from './components/widgets/term/term.component';
 import { CopyrightPipe } from './pipes/copyright/copyright.pipe';
 import { DisplayVocabularyListNamePipe } from './pipes/display-vocabulary-list-name/display-vocabulary-list-name.pipe';
 import { TermViewComponent } from './components/widgets/term-view/term-view.component';
+import { ListControlPanelComponent } from './components/widgets/list-control-panel/list-control-panel.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { TermViewComponent } from './components/widgets/term-view/term-view.comp
     TermsComponent,
     TermDetailComponent,
     TermViewComponent,
+    ListControlPanelComponent,
   ],
   imports: [
     BrowserModule,

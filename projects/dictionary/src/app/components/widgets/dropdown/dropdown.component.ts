@@ -1,14 +1,17 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { NameAndValue } from '../switch/switch.component';
 import { DropdownData } from './dropdown-data';
-import { DropdownItem } from './dropdown-item';
+import { LabelAndValue } from './dropdown-item';
+
+type DropdownNameAndValue = NameAndValue<string>;
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.css'],
 })
-export class DropdownComponent<T> implements OnInit {
-  @Input() public set dropdownData(data: DropdownData<T>) {
+export class DropdownComponent implements OnInit {
+  @Input() public set dropdownData(data: DropdownData<string>) {
     this._data = data;
   }
 
@@ -16,15 +19,20 @@ export class DropdownComponent<T> implements OnInit {
 
   private initialIndex = 0;
 
-  @Output() public onItemSelection = new EventEmitter<DropdownItem<T>>();
+  @Output() public onItemSelection = new EventEmitter<DropdownNameAndValue>();
 
-  _data: DropdownData<T>;
+  _data: DropdownData<string>;
 
   selectedIndex: number;
-  emitSelection(selectedIndex: number) {
-    const selectedItem: DropdownItem<T> = this._data.items[selectedIndex];
+  emitState(selectedIndex: number) {
+    const selectedItem: LabelAndValue<string> = this._data.items[selectedIndex];
 
-    this.onItemSelection.emit(selectedItem);
+    const nameAndValue: DropdownNameAndValue = {
+      name: this._data.prompt,
+      value: selectedItem.value,
+    };
+
+    this.onItemSelection.emit(nameAndValue);
   }
 
   ngOnInit(): void {}
@@ -35,6 +43,6 @@ export class DropdownComponent<T> implements OnInit {
     }
 
     this.selectedIndex = data.target.selectedIndex;
-    this.emitSelection(this.selectedIndex);
+    this.emitState(this.selectedIndex);
   }
 }

@@ -6,10 +6,8 @@ import { VocabularyListEntry } from '../../../services/dictionary-data/term-with
 import { VocabularyList } from '../../../services/dictionary-data/vocabulary-list';
 import { DictionarySearchService } from '../../../services/dictionary-search/dictionary-search.service';
 import { ListQuery } from '../../../services/dictionary-search/list-query';
-import { Parameter } from '../../../services/dictionary-search/parameter';
 import { DropdownData } from '../../widgets/dropdown/dropdown-data';
-import { DropdownItem } from '../../widgets/dropdown/dropdown-item';
-import { ListVariable } from './list-variable';
+import { ListVariable } from '../../widgets/list-control/list-variable';
 
 @Component({
   selector: 'app-vocabulary-list',
@@ -49,41 +47,12 @@ export class VocabularyListComponent implements OnInit {
     });
   }
 
-  handleNewSelection(data: DropdownItem<any>) {
-    this.search(this.createSearchQuery());
-  }
-
-  private createSearchQuery(): ListQuery<any> {
-    let q: ListQuery<any>;
-    q = {
-      parameters: [],
-    };
-    if (!(this.dropboxes?.length || this.checkboxes?.length)) {
-      throw new Error(
-        `Cannot create search query when both dropboxes and checkboxes are undefined.`
-      );
-    }
-    if (this.dropboxes?.length) {
-      for (const d of this.dropboxes) {
-        let queryParameter: Parameter<string>;
-        queryParameter = {
-          name: d.name,
-          value: d.currentValue.value,
-        };
-        q.parameters.push(queryParameter);
-      }
-    }
-    if (this.checkboxes?.length) {
-      for (const c of this.checkboxes) {
-        let queryParameter: Parameter<boolean>;
-        queryParameter = {
-          name: c.name,
-          value: c.currentValue.value,
-        };
-        q.parameters.push(queryParameter);
-      }
-    }
-    return q;
+  handleNewSelection(data: ListQuery<boolean | string>) {
+    this.search(data);
+    console.log({
+      message: 'got some data',
+      data,
+    });
   }
 
   search(q: ListQuery<any>) {
@@ -92,7 +61,7 @@ export class VocabularyListComponent implements OnInit {
       this.entries
     );
     this.selectedEntry = result;
-    this.selectedTermId = result.term.id;
+    this.selectedTermId = result?.term?.id;
   }
 
   private setDropboxes(dropboxes: DropdownData<string>[]) {
@@ -106,15 +75,12 @@ export class VocabularyListComponent implements OnInit {
   }
 
   private setCheckboxes(checkboxes: DropdownData<boolean>[]) {
-    if (typeof checkboxes === 'undefined') { return; }
+    if (typeof checkboxes === 'undefined') {
+      return;
+    }
 
     for (const c of checkboxes) {
       this.checkboxes.push(new ListVariable(c, 0, c.prompt, 'checkbox'));
     }
-  }
-
-  playAudio() {
-    const url: string = this.selectedEntry.term.audioURL;
-    if (url) { this.audio.playAudioFromURL(url); }
   }
 }
