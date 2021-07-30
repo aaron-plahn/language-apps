@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AudioService } from 'audio';
 import { DropdownData } from '../../widgets/dropdown/dropdown-data';
 import { LabelAndValue } from '../../widgets/dropdown/dropdown-item';
 
@@ -30,7 +29,7 @@ export class HomeComponent implements OnInit {
     ],
   };
 
-  constructor(private audioService: AudioService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

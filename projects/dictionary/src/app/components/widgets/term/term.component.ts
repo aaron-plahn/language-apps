@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MockDictionaryDataService } from '../../../services/dictionary-data/mock-dictionary-data.service';
+import { DictionaryDataService } from '../../../services/dictionary-data/dictionary-data.service';
 import { Term } from '../../../services/dictionary-data/term';
 
 @Component({
@@ -19,7 +19,7 @@ export class TermComponent implements OnInit {
     this._id = id;
   }
 
-  constructor(private dictionaryDataService: MockDictionaryDataService) {}
+  constructor(private dictionaryDataService: DictionaryDataService) {}
 
   ngOnInit(): void {
     this.dictionaryDataService.getTermByID(this._id).subscribe((term: Term) => {

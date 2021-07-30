@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MockDictionaryDataService } from '../../../services/dictionary-data/mock-dictionary-data.service';
+import { DictionaryDataService } from '../../../services/dictionary-data/dictionary-data.service';
 import { Term } from '../../../services/dictionary-data/term';
 
 @Component({
@@ -10,7 +10,7 @@ import { Term } from '../../../services/dictionary-data/term';
 export class TermsComponent implements OnInit {
   terms: Term[] = [];
 
-  constructor(private dictionaryDataService: MockDictionaryDataService) {}
+  constructor(private dictionaryDataService: DictionaryDataService) {}
 
   ngOnInit(): void {
     this.dictionaryDataService.getAllTerms().subscribe((data: Term[]) => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MockDictionaryDataService } from '../../../services/dictionary-data/mock-dictionary-data.service';
+import { DictionaryDataService } from '../../../services/dictionary-data/dictionary-data.service';
 import { VocabularyList } from '../../../services/dictionary-data/vocabulary-list';
 
 @Component({
@@ -10,7 +10,7 @@ import { VocabularyList } from '../../../services/dictionary-data/vocabulary-lis
 export class VocabularyListsComponent implements OnInit {
   lists: VocabularyList<any>[];
 
-  constructor(private data: MockDictionaryDataService) {}
+  constructor(private data: DictionaryDataService) {}
 
   ngOnInit(): void {
     this.data.getAllVocabularyListSummaries().subscribe((data: any) => {

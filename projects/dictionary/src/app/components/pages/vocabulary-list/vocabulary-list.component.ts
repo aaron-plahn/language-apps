@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AudioService } from 'audio';
-import { MockDictionaryDataService } from '../../../services/dictionary-data/mock-dictionary-data.service';
+import { DictionaryDataService } from '../../../services/dictionary-data/dictionary-data.service';
 import { VocabularyListEntry } from '../../../services/dictionary-data/term-with-values';
 import { VocabularyList } from '../../../services/dictionary-data/vocabulary-list';
 import { DictionarySearchService } from '../../../services/dictionary-search/dictionary-search.service';
@@ -25,7 +25,7 @@ export class VocabularyListComponent implements OnInit {
   checkboxes: ListVariable<boolean>[] = [];
 
   constructor(
-    private dictionaryData: MockDictionaryDataService,
+    private dictionaryData: DictionaryDataService,
     private dictionarySearch: DictionarySearchService,
     private route: ActivatedRoute,
     private audio: AudioService
