@@ -1,22 +1,42 @@
-<table class="mat-elevation-z8">
-  <thead>
-    <tr>
+<!-- Search Inputs -->
+
+<div style="text-align: center; padding: 5px">
+  <input
+    type="text"
+    id="myInput"
+    onkeyup="myFunction()"
+    placeholder="Search Term ..."
+    title="Type in a name"
+  />
+  <!-- <input
+    type="text"
+    id="myInput"
+    onkeyup="myFunction2()"
+    placeholder="Search English ..."
+    title="Type in a name"
+  />
+</div> -->
+
+  <!-- Table -->
+
+  <table id="myTable">
+    <thead>
       <ng-container>
-        <td>Term</td>
+        <th id="heading">Term</th>
       </ng-container>
       <ng-container>
-        <td>English</td>
+        <th id="heading">English</th>
       </ng-container>
       <ng-container>
-        <td>Contributor</td>
+        <th id="heading">Contributor</th>
       </ng-container>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let term of _terms">
-      <td>{{ term.term }}</td>
-      <td>{{ term.termEnglish }}</td>
-      <td>{{ term.contributor }}</td>
-    </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <tr id="demo" *ngFor="let term of _terms" (click)="myFunction2($event)">
+        <td>{{ term.term }}</td>
+        <td>{{ term.termEnglish }}</td>
+        <td>{{ term.contributor }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

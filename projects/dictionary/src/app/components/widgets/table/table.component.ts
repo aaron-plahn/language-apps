@@ -16,4 +16,12 @@ export class TableComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  // myFunction2(data) {
+  //   console.log({ data });
+  // }
+
+  myFunction2(data) {
+    document.getElementById('demo').style.color = 'red';
+  }
 }

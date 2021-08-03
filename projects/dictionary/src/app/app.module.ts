@@ -18,10 +18,10 @@ import { VocabularyListsComponent } from './components/pages/vocabulary-lists/vo
 import { DropdownComponent } from './components/widgets/dropdown/dropdown.component';
 import { ListControlComponent } from './components/widgets/list-control/list-control.component';
 import { SwitchComponent } from './components/widgets/switch/switch.component';
+import { TableComponent } from './components/widgets/table/table.component';
 import { TermComponent } from './components/widgets/term/term.component';
 import { CopyrightPipe } from './pipes/copyright/copyright.pipe';
 import { DisplayVocabularyListNamePipe } from './pipes/display-vocabulary-list-name/display-vocabulary-list-name.pipe';
-import { TableComponent } from './components/widgets/table/table.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +50,7 @@ import { TableComponent } from './components/widgets/table/table.component';
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

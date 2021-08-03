@@ -1,22 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MenuComponent } from './pages/menu/menu.component';
-import { TileComponent } from './widgets/tile/tile.component';
-import { DetailComponent } from './pages/detail/detail.component';
-import { HomeComponent } from './pages/home/home.component';
-import { CreditsComponent } from './pages/credits/credits.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { AppDescriptionsComponent } from './pages/app-descriptions/app-descriptions.component';
+import { CreditsComponent } from './pages/credits/credits.component';
+import { DetailComponent } from './pages/detail/detail.component';
+import { HomeComponent } from './pages/home/home.component';
+import { MenuComponent } from './pages/menu/menu.component';
+import { TileComponent } from './widgets/tile/tile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { AppDescriptionsComponent } from './pages/app-descriptions/app-descripti
     DetailComponent,
     HomeComponent,
     CreditsComponent,
-    AppDescriptionsComponent
+    AppDescriptionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,9 +38,12 @@ import { AppDescriptionsComponent } from './pages/app-descriptions/app-descripti
     MatGridListModule,
     MatCardModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
