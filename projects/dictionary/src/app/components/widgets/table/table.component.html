@@ -35,27 +35,29 @@
     title="Type in Contributor"
   />
 </div>
-
-<!-- Table -->
-<div style="padding: 5px">
-  <table id="myTable">
-    <thead>
-      <ng-container>
-        <th class="header">Term</th>
-      </ng-container>
-      <ng-container>
-        <th class="header">English</th>
-      </ng-container>
-      <ng-container>
-        <th class="header">Contributor</th>
-      </ng-container>
-    </thead>
-    <tbody>
-      <tr id="demo" *ngFor="let term of _terms" (click)="myFunction2($event)">
-        <td>{{ term.term }}</td>
-        <td>{{ term.termEnglish }}</td>
-        <td>{{ term.contributor }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="_data">
+  <div style="padding: 5px">
+    <table id="myTable">
+      <thead>
+        <ng-container>
+          <th class="header">Term</th>
+        </ng-container>
+        <ng-container>
+          <th class="header">English</th>
+        </ng-container>
+        <ng-container>
+          <th class="header">Contributor</th>
+        </ng-container>
+      </thead>
+      <tbody>
+        <tr
+          id="demo"
+          *ngFor="let row of _data.rows"
+          (click)="myFunction2($event)"
+        >
+          <td *ngFor="let key of _data.headings">{{ row[key] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
