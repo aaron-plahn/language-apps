@@ -1,20 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { VocabularyListsComponent } from './vocabulary-lists.component';
+import { VocabularyListIndexComponent } from './vocabulary-list-index.component';
 
 describe('VocabularyListsComponent', () => {
-  let component: VocabularyListsComponent;
-  let fixture: ComponentFixture<VocabularyListsComponent>;
+  let component: VocabularyListIndexComponent;
+  let fixture: ComponentFixture<VocabularyListIndexComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VocabularyListsComponent ]
-    })
-    .compileComponents();
+      declarations: [VocabularyListIndexComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VocabularyListsComponent);
+    fixture = TestBed.createComponent(VocabularyListIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

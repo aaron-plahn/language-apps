@@ -13,8 +13,8 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { TermDetailComponent } from './components/pages/term-detail/term-detail.component';
 import { TermsComponent } from './components/pages/terms/terms.component';
+import { VocabularyListIndexComponent } from './components/pages/vocabulary-list-index/vocabulary-list-index.component';
 import { VocabularyListComponent } from './components/pages/vocabulary-list/vocabulary-list.component';
-import { VocabularyListsComponent } from './components/pages/vocabulary-lists/vocabulary-lists.component';
 import { DropdownComponent } from './components/widgets/dropdown/dropdown.component';
 import { ListControlPanelComponent } from './components/widgets/list-control-panel/list-control-panel.component';
 import { ListControlComponent } from './components/widgets/list-control/list-control.component';
@@ -32,7 +32,7 @@ import { DisplayVocabularyListNamePipe } from './pipes/display-vocabulary-list-n
     HomeComponent,
     DropdownComponent,
     SwitchComponent,
-    VocabularyListsComponent,
+    VocabularyListIndexComponent,
     DisplayVocabularyListNamePipe,
     ListControlComponent,
     TermComponent,

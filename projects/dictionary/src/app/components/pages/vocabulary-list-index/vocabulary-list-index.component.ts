@@ -4,10 +4,10 @@ import { VocabularyList } from '../../../services/dictionary-data/vocabulary-lis
 
 @Component({
   selector: 'app-vocabulary-lists',
-  templateUrl: './vocabulary-lists.component.html',
-  styleUrls: ['./vocabulary-lists.component.css'],
+  templateUrl: './vocabulary-list-index.component.html',
+  styleUrls: ['./vocabulary-list-index.component.css'],
 })
-export class VocabularyListsComponent implements OnInit {
+export class VocabularyListIndexComponent implements OnInit {
   lists: VocabularyList<any>[];
 
   constructor(private data: DictionaryDataService) {}
