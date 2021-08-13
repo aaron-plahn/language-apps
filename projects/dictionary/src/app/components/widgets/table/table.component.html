@@ -1,0 +1,63 @@
+<!-- Search Inputs -->
+
+<div style="text-align: center; padding: 5px">
+  <input
+    type="text"
+    id="myInput"
+    onkeyup="myFunction()"
+    placeholder="Search All ..."
+    title="Type in a name"
+  />
+</div>
+
+<div style="text-align: center">
+  <input
+    type="text"
+    id="myInput2"
+    onkeyup="termsearch()"
+    placeholder="Search Term ..."
+    title="Type in term"
+  />
+
+  <input
+    type="text"
+    id="myInput3"
+    onkeyup="searchenglish()"
+    placeholder="Search English ..."
+    title="Type in term"
+  />
+
+  <input
+    type="text"
+    id="myInput4"
+    onkeyup="searchcontributor()"
+    placeholder="Search Contributor ..."
+    title="Type in Contributor"
+  />
+</div>
+<div *ngIf="_data">
+  <div style="padding: 5px">
+    <table id="myTable">
+      <thead>
+        <ng-container>
+          <th class="header">Term</th>
+        </ng-container>
+        <ng-container>
+          <th class="header">English</th>
+        </ng-container>
+        <ng-container>
+          <th class="header">Contributor</th>
+        </ng-container>
+      </thead>
+      <tbody>
+        <tr
+          id="demo"
+          *ngFor="let row of _data.rows"
+          (click)="myFunction2($event)"
+        >
+          <td *ngFor="let key of _data.headings">{{ row[key] }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

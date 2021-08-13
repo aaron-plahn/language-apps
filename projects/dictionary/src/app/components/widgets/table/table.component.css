@@ -1,0 +1,37 @@
+table {
+    width: auto;
+margin: auto;
+border-spacing: 0;
+border: 1px solid #ddd;
+background: rgb(252, 252, 252);
+border-radius: 5px;
+box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.445);
+}
+
+tr:hover {
+    background-color: rgb(255, 144, 144);
+}
+
+thead {
+    background-color: rgb(255, 91, 91);
+}
+
+#heading {
+    font-weight: 800;
+    color: rgb(112, 112, 112);
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+    border-top: 1px solid #ddd;
+  }
+
+  * {
+      font-size: 14px;
+  }
+
+  input {
+      padding: 5px;
+      border-radius: 4px;
+  }

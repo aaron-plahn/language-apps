@@ -1,11 +1,37 @@
-<button [routerLink]="['terms']">Terms</button>
-<button [routerLink]="['lists']">Paradigms and Vocabulary Lists</button>
+<nav class="container">
+  <mat-toolbar class="navbar">
+    <img
+      src="https://api.tsilhqotinlanguage.ca/uploads/tng_log_for_language_hub_2e4ec30f17.png"
+      style="height: 35px; padding: 5px"
+    />
 
+    <div class="title">
+      <b>TŜILHQOT’IN DICTIONARY</b>
+    </div>
+  </mat-toolbar>
+</nav>
+
+<br />
+
+<div id="buttons" style="text-align: center">
+  <div>
+    <button [routerLink]="['terms']"><p>Terms</p></button>
+  </div>
+  <div>
+    <button [routerLink]="['lists']">
+      <p>Paradigms and Vocabulary Lists</p>
+    </button>
+  </div>
+</div>
+
+<!--
 <div *ngIf="checkboxData">
   <app-switch (checked)="(true)" [checkboxData]="checkboxData"></app-switch>
 </div>
+-->
 
-<!-- TODO JB Style term widget (widets/term)-->
+<!--
+TODO JB Style term widget (widets/term)--
 <h1>JBam to do</h1>
 <h2>0. style this home page</h2>
 <h2>
