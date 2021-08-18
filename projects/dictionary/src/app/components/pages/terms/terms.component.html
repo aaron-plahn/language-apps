@@ -18,5 +18,8 @@
 
 <!-- component template starts here-->
 <div *ngIf="termsTable">
-  <app-table [data]="termsTable"></app-table>
+  <app-table
+    [data]="termsTable"
+    (onClick)="handleCellClick($event)"
+  ></app-table>
 </div>
