@@ -24,17 +24,11 @@ export class TermsComponent implements OnInit {
     });
   }
 
-  handleCellClick(eventData: TableClickEventData<Term>) {
-    console.log({
-      eventData,
-    });
+  handleCellClick({ row, column }: TableClickEventData<Term>) {
+    if (column === 'term' || column === 'termEnglish')
+      this.router.navigateByUrl(`/terms/${this.termsTable.rows[row].id}`);
 
-    const { row, column } = eventData;
-
-    console.log({
-      row,
-      column,
-    });
+    // TODO if column === 'contributor' navigate to the contributor's bio page
   }
 
   // TODO consider moving this higher and making it generic

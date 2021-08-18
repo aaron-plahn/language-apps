@@ -25,11 +25,11 @@ export class TableComponent<T extends Record<string, string>>
 
   ngOnInit(): void {}
 
-  // TODO add types
+  // TODO add types, avoid passing event data
   handleCellClick(event) {
-    var target = event.target || event.srcElement || event.currentTarget;
-    var rowIndexAttr = target.attributes.rowIndex;
-    var fieldAttr = target.attributes.class;
+    const target = event.target || event.srcElement || event.currentTarget;
+    const rowIndexAttr = target.getAttribute('rowIndex');
+    const fieldAttr = target.getAttribute('class');
 
     this.emitClickData({ row: rowIndexAttr, column: fieldAttr });
   }
