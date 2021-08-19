@@ -3,6 +3,8 @@
 </div>
 <div *ngIf="!selectedEntry">No results found.</div>
 
+<div *ngIf="listId">list no. {{ listId }}</div>
+
 <div *ngIf="dropboxes || checkboxes">
   <app-list-control-panel
     [dropboxes]="dropboxes"

@@ -39,14 +39,8 @@
   <div style="padding: 5px">
     <table id="myTable">
       <thead>
-        <ng-container>
-          <th class="header">Term</th>
-        </ng-container>
-        <ng-container>
-          <th class="header">English</th>
-        </ng-container>
-        <ng-container>
-          <th class="header">Contributor</th>
+        <ng-container *ngFor="let heading of _data.headings">
+          <th class="header">{{ heading }}</th>
         </ng-container>
       </thead>
       <tbody>

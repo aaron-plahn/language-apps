@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AudioService } from 'audio';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { forkJoin } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { DictionaryDataService } from '../../../services/dictionary-data/dictionary-data.service';
 import { VocabularyListEntry } from '../../../services/dictionary-data/term-with-values';
 import { VocabularyList } from '../../../services/dictionary-data/vocabulary-list';
@@ -18,7 +19,7 @@ export class VocabularyListComponent implements OnInit {
   selectedEntry: VocabularyListEntry;
   entries: VocabularyListEntry[];
   vocabularyList: VocabularyList<any>;
-  listID: string;
+  listId: string;
   selectedTermId: string;
 
   dropboxes: ListVariable<string>[] = [];
@@ -27,24 +28,27 @@ export class VocabularyListComponent implements OnInit {
   constructor(
     private dictionaryData: DictionaryDataService,
     private dictionarySearch: DictionarySearchService,
-    private route: ActivatedRoute,
-    private audio: AudioService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.dictionaryData
-      .getTermsForListByListID('1')
-      .subscribe((entries: VocabularyListEntry[]) => {
-        this.entries = entries;
+    this.route.paramMap
+      .pipe(
+        switchMap((params: ParamMap) => {
+          this.listId = params.get('id');
+          return forkJoin([
+            this.dictionaryData.getTermsForListByListID(this.listId),
+            this.dictionaryData.getVocabularyListByID(this.listId),
+          ]);
+        })
+      )
+      .subscribe((results) => {
+        this.entries = results[0];
+        this.vocabularyList = results[1];
+        this.selectedTermId = this.entries[0].term.id;
+        this.setDropboxes(this.vocabularyList.variables.dropboxes);
+        this.setCheckboxes(this.vocabularyList.variables.checkboxes);
       });
-
-    this.selectedTermId = '1';
-
-    this.dictionaryData.getVocabularyListByID('1').subscribe((list: any) => {
-      this.vocabularyList = list;
-      this.setDropboxes(list.variables.dropboxes);
-      this.setCheckboxes(list.variables.checkboxes);
-    });
   }
 
   handleNewSelection(data: ListQuery<boolean | string>) {
