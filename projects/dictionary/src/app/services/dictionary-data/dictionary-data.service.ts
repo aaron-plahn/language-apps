@@ -199,7 +199,7 @@ export class DictionaryDataService implements DictionaryDataAPI {
   private vocabularyListSummaryAdapter(
     apiVocabularyList
   ): VocabularyListSummary {
-    const { name, name_english, id, credits } = apiVocabularyList;
+    const { name, name_english, id } = apiVocabularyList;
 
     if (!id || (!name && !name_english)) {
       return undefined;
@@ -209,7 +209,6 @@ export class DictionaryDataService implements DictionaryDataAPI {
       name: returnValueOrNullIfUndefined(name),
       name_english: returnValueOrNullIfUndefined(name_english),
       id: returnValueOrNullIfUndefined(id),
-      credits: returnValueOrNullIfUndefined(credits),
     };
   }
 }

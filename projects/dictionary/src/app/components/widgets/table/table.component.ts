@@ -12,8 +12,11 @@ export class TableComponent<T extends Record<string, string>>
 {
   _data: TableData<T>;
 
+  _selectedData: TableData<T>;
+
   @Input() public set data(data: TableData<T>) {
     this._data = data;
+    this._selectedData = data;
   }
 
   @Output() public onClick = new EventEmitter<TableClickEventData<T>>();
@@ -32,5 +35,39 @@ export class TableComponent<T extends Record<string, string>>
     const fieldAttr = target.getAttribute('class');
 
     this.emitClickData({ row: rowIndexAttr, column: fieldAttr });
+  }
+
+  filterData(event, heading: keyof T) {
+    const target = event.target || event.srcElement || event.currentTarget;
+    const value = String(target.value);
+
+    console.log(`type of value: ${typeof value}`);
+
+    const filteredRows = this._data.rows.filter((row) => {
+      console.log({
+        row,
+        heading,
+        value: row[heading],
+      });
+
+      return this.like(row[heading], value);
+    });
+    this._selectedData = {
+      ...this._selectedData,
+      rows: filteredRows,
+    };
+  }
+
+  private like<T extends string>(target: T, input: T): boolean {
+    if (typeof target === 'undefined' || target === null) return false;
+
+    if (!(typeof input === 'string'))
+      // TODO support non-string input
+      throw new Error(`Like does not support non-string data: ${input}`);
+
+    if (!(typeof target === 'string'))
+      throw new Error(`Like does not support non-string data: ${input}`);
+
+    return (target as string).includes(input);
   }
 }

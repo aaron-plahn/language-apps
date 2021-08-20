@@ -24,5 +24,4 @@ export type VocabularyListSummary = {
   id: string;
   name?: string;
   name_english: string;
-  credits?: object;
 };
