@@ -12,9 +12,12 @@
 body { 
     margin: 0;
     height: 100%;
+    font-family: 'Roboto', sans-serif;
 }
 
-
+h2,h1,*,p {
+    font-family: 'Roboto', sans-serif;
+}
 
 body {
     background: url(https://www.tsilhqotin.ca/wp-content/uploads/2021/08/tsilhqotin_hillside-scaled.jpg) no-repeat center center fixed;
@@ -22,6 +25,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    font-family: 'Roboto', sans-serif;
 }
 
 #heading {
