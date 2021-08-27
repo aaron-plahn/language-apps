@@ -1,3 +1,11 @@
+.sidenav {
+  background: rgb(85, 85, 85);
+}
+
+a {
+  padding-top: 15px;
+}
+
 .sidenav-container {
     height: 100%;
     box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.384), 0 6px 20px 0 rgba(0, 0, 0, 0.384);
@@ -19,4 +27,9 @@
   
   .navbar-brand {
     padding: 15px;
+  }
+
+  #title {
+    font-size: 24px;
+    font-weight: normal;
   }

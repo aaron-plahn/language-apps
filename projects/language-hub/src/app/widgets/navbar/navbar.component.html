@@ -8,11 +8,13 @@
     [opened]="(isHandset$ | async) === false"
   >
     <mat-toolbar style="box-shadow: none">
-      <a class="navbar-brand" href="#"
-        ><img
-          src="https://api.tsilhqotinlanguage.ca/uploads/tng_log_for_language_hub_2e4ec30f17.png"
-          style="height: 50px"
-      /></a>
+      <div style="padding-top: 28px">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://api.tsilhqotinlanguage.ca/uploads/tng_log_for_language_hub_2e4ec30f17.png"
+            style="height: 50px"
+        /></a>
+      </div>
     </mat-toolbar>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['/radio']">104.5 FM </a>
@@ -27,7 +29,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" style="height: 68px">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -37,7 +39,7 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span> Tŝilhqot’in Language </span>
+      <span id="title">Tŝilhqot’in Language</span>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
