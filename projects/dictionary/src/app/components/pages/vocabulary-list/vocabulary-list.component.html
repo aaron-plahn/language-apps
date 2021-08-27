@@ -1,14 +1,18 @@
-<div *ngIf="selectedEntry?.term">
-  <app-term-view [term]="selectedEntry.term"></app-term-view>
-</div>
-<div *ngIf="!selectedEntry">No results found.</div>
+<div class="container">
+  <div id="id">
+    <div *ngIf="selectedEntry?.term">
+      <app-term-view [term]="selectedEntry.term"></app-term-view>
+    </div>
+    <div *ngIf="!selectedEntry">No results found.</div>
 
-<div *ngIf="listId">list no. {{ listId }}</div>
+    <div *ngIf="listId">list no. {{ listId }}</div>
 
-<div *ngIf="dropboxes || checkboxes">
-  <app-list-control-panel
-    [dropboxes]="dropboxes"
-    [checkboxes]="checkboxes"
-    (onItemSelection)="handleNewSelection($event)"
-  ></app-list-control-panel>
+    <div *ngIf="dropboxes || checkboxes">
+      <app-list-control-panel
+        [dropboxes]="dropboxes"
+        [checkboxes]="checkboxes"
+        (onItemSelection)="handleNewSelection($event)"
+      ></app-list-control-panel>
+    </div>
+  </div>
 </div>
