@@ -22,7 +22,8 @@ section {
 
 .wave {
     position: absolute;
-    background: linear-gradient(to right, rgba(7, 7, 7, 0.7), rgba(37, 37, 37, 0.45), rgba(37, 37, 37, 0.2),rgba(37, 37, 37, 0.0));
+    background: rgb(236,236,236);
+    background: linear-gradient(90deg, rgba(236,236,236,1) 0%, rgba(0, 0, 0, 0.626) 0%, rgba(255,217,217,0) 100%);
 }
 
 
