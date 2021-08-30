@@ -29,7 +29,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar style="height: 72px; background-color: #b40000">
+    <mat-toolbar style="height: 72px; background-color: #c20000">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -39,7 +39,14 @@
       >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span id="title">Tŝilhqot’in Language ©</span>
+      <span id="title" style="padding-top: 12px">
+        <a href="https://tsilhqotinlanguage.ca"
+          ><img
+            src="https://www.tsilhqotin.ca/wp-content/uploads/2021/08/tsilhqotin_language_logo_3-3.png"
+            alt="Tsilhqot’in Language"
+            style="height: 50px"
+        /></a>
+      </span>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
