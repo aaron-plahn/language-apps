@@ -33,3 +33,9 @@ a {
     font-size: 24px;
     font-weight: normal;
   }
+
+  @media (max-width: 1200px) {
+    #title {
+      margin: auto;
+    }
+}
