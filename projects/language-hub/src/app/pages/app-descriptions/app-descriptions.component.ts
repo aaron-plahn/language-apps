@@ -39,7 +39,7 @@ export class AppDescriptionsComponent implements OnInit {
         web: 'https://tsilhqotinlanguage.ca/game/2021/alphabet/',
       },
       image:
-        'https://api.tsilhqotinlanguage.ca/uploads/app_icon_alphabet_25678c6c86.png',
+        'https://www.tsilhqotin.ca/wp-content/uploads/2021/02/alphabet_logo-removebg-preview2.png',
       description:
         'This app goes along with the modernized Tŝilhqot’in Alphabet Poster. It can be used as a ’cheat sheet’ for the poster.',
     },
